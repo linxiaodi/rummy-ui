@@ -1,0 +1,93 @@
+
+const { resolve, isPro, mode } = require('./utils')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+	entry: {
+		index: resolve('lib/index.tsx')
+	},
+	output: {
+		path: resolve('dist'),
+		filename: '[name].[hash].js',
+		libraryTarget: 'umd',
+		publicPath: '/'
+	},
+	mode,
+	resolve: {
+		extensions: ['*', '.ts', '.tsx', '.js', 'jsx', '.css', '.scss'],
+		alias: {
+			'@': resolve('src'),
+			'react-dom': '@hot-loader/react-dom'
+		}
+	},
+	module: {
+		rules: [
+			{
+				test: /\.tsx?$/,
+				use: ['awesome-typescript-loader'],
+				exclude: [/node_modules/]
+			},
+			{
+				test: /\.jsx?$/,
+				use: ['babel-loader'],
+			},
+			{
+				test: /\.css$/,
+				use: isPro ? ExtractTextPlugin.extract({
+					use: [
+						{
+							loader: 'css-loader',
+							options: { minimize: true }
+						}
+					]
+				}) : ['style-loader', 'css-loader']
+			},
+			{
+				test: /\.scss$/,
+				use: isPro
+					? ExtractTextPlugin.extract({
+						use: [
+							{
+								loader: 'css-loader',
+								options: { minimize: true }
+							},
+							'sass-loader'
+						]
+					})
+					: ['style-loader', 'css-loader', 'sass-loader']
+			},
+		]
+	},
+	plugins: [
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+			'process.env.PORT': JSON.stringify(process.env.PORT),
+		}),
+		new HtmlWebpackPlugin({
+			template: resolve('index.html')
+		})
+	].concat(isPro ? [
+		new ExtractTextPlugin({
+			filename: 'css/[name].[hash].css'
+		})
+	] : []),
+	// optimization: {
+	//   splitChunks: {
+	//     cacheGroups: {
+	//       vendor: {
+	//         chunks: "initial",
+	//         test: /vue|vue-router|vuex/,
+	//         name: "vendor", // 使用 vendor 入口作为公共部分
+	//         enforce: true,
+	//       },
+	//       manifest: {
+	//         chunks: 'all',
+	//         name: 'manifest'
+	//       }
+	//     }
+	//   }
+	// }
+}
+
