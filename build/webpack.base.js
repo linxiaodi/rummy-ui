@@ -31,12 +31,13 @@ module.exports = {
 			},
 			{
 				test: /\.jsx?$/,
-				use: ['babel-loader'],
+				loader: require.resolve('babel-loader')
 			},
 			{
 				test: /\.css$/,
 				use: isPro ? ExtractTextPlugin.extract({
 					use: [
+						'style-loader',
 						{
 							loader: 'css-loader',
 							options: { minimize: true }
@@ -49,11 +50,21 @@ module.exports = {
 				use: isPro
 					? ExtractTextPlugin.extract({
 						use: [
+							'style-loader',
 							{
 								loader: 'css-loader',
 								options: { minimize: true }
 							},
-							'sass-loader'
+							'sass-loader',
+							{
+								loader: 'style-resources-loader',
+								options: {
+									patterns: [
+										resolve('lib/style/*.scss'),
+										resolve('lib/**/*.scss')
+									]
+								}
+							}
 						]
 					})
 					: ['style-loader', 'css-loader', 'sass-loader']
@@ -62,8 +73,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-			'process.env.PORT': JSON.stringify(process.env.PORT),
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
 		}),
 		new HtmlWebpackPlugin({
 			template: resolve('index.html')

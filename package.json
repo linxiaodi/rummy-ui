@@ -4,7 +4,7 @@
   "description": "A toolkit UI build by React,Typescript.",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=development webpack --config ./build/webpack.base.js",
+    "build": "rimraf ./dist && cross-env NODE_ENV=development webpack --config ./build/webpack.pro.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js --color",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand"
   },
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/linxiaodi/unknow-ui#readme",
   "dependencies": {
     "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
@@ -32,6 +33,7 @@
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
+    "@types/prop-types": "^15.7.3",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "awesome-typescript-loader": "^5.2.1",
@@ -47,7 +49,9 @@
     "jest": "^24.9.0",
     "react-hot-loader": "^4.12.13",
     "react-test-renderer": "^16.10.2",
+    "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
+    "style-resources-loader": "^1.2.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",

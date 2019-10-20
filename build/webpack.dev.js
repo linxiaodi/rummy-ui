@@ -7,9 +7,5 @@ module.exports = merge(config, {
 	devServer: {
 		port: process.env.PORT || 3300,
 		hot: true,
-		hotOnly: true,
-		after() {
-			console.log(123)
-		}
 	}
 })
