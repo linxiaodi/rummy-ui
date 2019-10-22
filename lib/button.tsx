@@ -1,4 +1,5 @@
 import React from 'react';
+import { tuple } from './_util/type'
 import './button/button.scss';
 
 export enum ButtonShapes {
@@ -6,9 +7,12 @@ export enum ButtonShapes {
     Circle = 'circle'
 }
 
-export type ButtonTypes = ['primary', 'positive', 'negative', 'basic'][number];
+const ButtonTypes = tuple('primary', 'positive', 'negative', 'default')
+const ButtonSizes = tuple('large, default', 'small')
 
-export type ButtonSizes = ['large, default', 'small'][number];
+export type ButtonTypes = (typeof ButtonTypes)[number];
+
+export type ButtonSizes = (typeof ButtonSizes)[number];
 
 interface ButtonProps {
     type?: ButtonTypes,
@@ -21,6 +25,11 @@ interface ButtonProps {
 
 interface ButtonState {
     loading?: boolean
+}
+
+const defaultButtonProps: ButtonProps = {
+    type: 'default',
+    shape: '',
 }
 
 class Button extends React.Component<ButtonProps, ButtonState> {
