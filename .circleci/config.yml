@@ -1,7 +1,7 @@
 #https://github.com/revolunet/create-react-app-circleci/blob/master/.circleci/config.yml
 defaults: &defaults
   docker:
-    - image: circleci/node:12
+    - image: circleci/node:8
 
 version: 2
 jobs:
@@ -12,7 +12,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-dependencies-{{ checksum "package.json" }}
-      - run: yarn install
+      - run: yarn config set registry https://registry.npmjs.org/ &&  yarn install
       - save_cache:
           paths:
             - node_modules
