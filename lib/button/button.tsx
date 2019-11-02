@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { tuple } from '../_util/type'
-import './button.scss';
+import './button.css';
 
 export enum ButtonShapes {
     Square = 'square',
