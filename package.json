@@ -1,6 +1,6 @@
 {
   "name": "fisher-ui",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT_DIR=./test-results/jest JEST_JUNIT_OUTPUT_NAME=results.xml jest --config=jest.config.js"
   },
   "files": [
-    "/dist",
-    "/dist/**/*.css"
+    "./dist",
+    "./dist/**/*.css"
   ],
   "types": "./dist/lib/index.d.ts",
   "repository": {
