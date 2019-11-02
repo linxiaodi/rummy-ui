@@ -1,6 +1,6 @@
 {
   "name": "fisher-ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "files": [
     "/dist"
   ],
-  "typings": "/dist/lib/index.d.ts",
+  "types": "./dist/lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/linxiaodi/unknow-ui.git"
