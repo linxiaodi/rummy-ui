@@ -1,5 +1,6 @@
 import React from 'react';
 import cs from 'classnames';
+import './index.css';
 
 interface IconProps {
 	name: string,

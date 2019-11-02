@@ -10,7 +10,7 @@ module.exports = {
 	},
 	output: {
 		path: resolve('dist'),
-		filename: '[name].[hash].js',
+		filename: '[name].js',
 		libraryTarget: 'umd',
 		publicPath: '/'
 	},
@@ -37,11 +37,7 @@ module.exports = {
 				test: /\.css$/,
 				use: isPro ? ExtractTextPlugin.extract({
 					use: [
-						'style-loader',
-						{
-							loader: 'css-loader',
-							options: { minimize: true }
-						}
+						'css-loader'
 					]
 				}) : ['style-loader', 'css-loader']
 			},
@@ -51,10 +47,7 @@ module.exports = {
 					? ExtractTextPlugin.extract({
 						use: [
 							'style-loader',
-							{
-								loader: 'css-loader',
-								options: { minimize: true }
-							},
+							'css-loader',
 							'sass-loader',
 							{
 								loader: 'style-resources-loader',
@@ -75,12 +68,12 @@ module.exports = {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
 		}),
-		new HtmlWebpackPlugin({
-			template: resolve('index.html')
-		})
+		// new HtmlWebpackPlugin({
+		// 	template: resolve('index.html')
+		// })
 	].concat(isPro ? [
 		new ExtractTextPlugin({
-			filename: 'css/[name].[hash].css'
+			filename: 'css/[name].css'
 		})
 	] : []),
 	// optimization: {
