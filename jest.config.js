@@ -18,7 +18,8 @@ module.exports = {
 	coverageReporters: ['text', 'lcov'], // 指定测试覆盖率生成的theme
 	// end 测试覆盖率
 	moduleNameMapper: {},
-	testMatch: ['<rootDir>/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
+	// 测试选择
+	testMatch: ['<rootDir>/lib/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
 	transform: {
 		'^.+unit\\.(js|jsx)$': 'babel-jest',
 		'^.+\\.(ts|tsx)$': 'ts-jest'

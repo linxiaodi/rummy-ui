@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Icon from './Icon'
-import Button from './button'
+import Icon from './icons/icon'
+import Button from './button/button'
 
 let App = () => (<div>
     <Icon name='check-circle' />

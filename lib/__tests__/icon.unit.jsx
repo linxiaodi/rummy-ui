@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../icon';
+import Icon from '../icons/icon';
 import { shallow, mount } from 'enzyme';
 
 const clickFn = jest.fn()
