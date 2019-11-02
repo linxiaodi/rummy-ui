@@ -14,7 +14,7 @@ export type ButtonTypes = (typeof ButtonTypes)[number];
 
 export type ButtonSizes = (typeof ButtonSizes)[number];
 
-interface ButtonProps extends React.HTMLAttributes<HTMLDivElement>{
+interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: ButtonTypes,
     shape?: ButtonShapes,
     size?: ButtonSizes,
@@ -37,6 +37,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
         super(props);
         this.state = {};
     }
+
     render() {
         return (<div className="fisher-button">123</div>);
     }
