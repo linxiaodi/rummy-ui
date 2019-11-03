@@ -35,6 +35,13 @@ jobs:
             - package.json
             - LICENSE
             - README.md
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - run: npm publish
   test:
     <<: *defaults
     steps:
@@ -44,13 +51,6 @@ jobs:
       - run: yarn run ci
       - store_test_results:
           path: test-results
-  publish:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - run: npm publish
 
 
 
@@ -59,15 +59,14 @@ workflows:
   build_accept_deploy:
     jobs:
       - prepare
+      - publish:
+        requires: build
       - build:
           requires:
             - test
       - test:
           requires:
             - prepare
-      - publish:
-          requires:
-            - build
           filters:
             tags:
               only: /^v[0-9]+(\.[0-9]+)*/
