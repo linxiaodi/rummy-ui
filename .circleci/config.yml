@@ -27,7 +27,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: yarn run build
+      - run: yarn build
       - persist_to_workspace:
           root: .
           paths:
@@ -35,22 +35,22 @@ jobs:
             - package.json
             - LICENSE
             - README.md
-  publish:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: .
-      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - run: npm publish
-  test:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: yarn run ci
-      - store_test_results:
-          path: test-results
+    test:
+      <<: *defaults
+      steps:
+        - checkout
+        - attach_workspace:
+            at: .
+        - run: yarn ci
+        - store_test_results:
+            path: test-results
+    publish:
+      <<: *defaults
+      steps:
+        - attach_workspace:
+            at: .
+        - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        - run: npm publish
 
 
 
