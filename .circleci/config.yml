@@ -12,7 +12,7 @@ jobs:
       - restore_cache:
           keys:
             - v2-dependencies-{{ checksum "package.json" }}
-      - run: yarn config set registry https://registry.npmjs.org/ &&  yarn install
+      - run: yarn install
       - save_cache:
           paths:
             - node_modules
@@ -35,22 +35,22 @@ jobs:
             - package.json
             - LICENSE
             - README.md
-    test:
-      <<: *defaults
-      steps:
-        - checkout
-        - attach_workspace:
-            at: .
-        - run: yarn run ci
-        - store_test_results:
-            path: test-results
-    publish:
-      <<: *defaults
-      steps:
-        - attach_workspace:
-            at: .
-        - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-        - run: npm publish
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn ci
+      - store_test_results:
+          path: test-results
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+      - run: npm publish
 
 
 
