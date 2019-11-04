@@ -1,13 +1,14 @@
 {
   "name": "fisher-ui",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf ./dist && cross-env NODE_ENV=production webpack --config ./build/webpack.pro.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js --color",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
-    "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT_DIR=./test-results/jest JEST_JUNIT_OUTPUT_NAME=results.xml jest --config=jest.config.js"
+    "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT_DIR=./test-results/jest JEST_JUNIT_OUTPUT_NAME=results.xml jest --config=jest.config.js",
+    "depoly": "sh ./depoly.sh"
   },
   "files": [
     "./dist",
