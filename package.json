@@ -1,6 +1,6 @@
 {
   "name": "fisher-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
