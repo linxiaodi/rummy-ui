@@ -2,7 +2,6 @@
 const { resolve, isPro, mode } = require('./utils')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: {
@@ -53,8 +52,7 @@ module.exports = {
 								loader: 'style-resources-loader',
 								options: {
 									patterns: [
-										resolve('lib/style/*.scss'),
-										resolve('lib/**/*.scss')
+										resolve('lib/style/*.scss')
 									]
 								}
 							}
@@ -67,10 +65,7 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-		}),
-		// new HtmlWebpackPlugin({
-		// 	template: resolve('index.html')
-		// })
+		})
 	].concat(isPro ? [
 		new ExtractTextPlugin({
 			filename: 'css/[name].css'

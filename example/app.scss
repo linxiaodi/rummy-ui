@@ -1,0 +1,22 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#app, .box {
+  height: inherit;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+}
+
+.main {
+  padding-left: 220px;
+}

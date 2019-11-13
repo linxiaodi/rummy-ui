@@ -9,3 +9,4 @@
 // ReactDOM.render(<App/>, document.querySelector('#app'))
 
 export { default as Icon } from './icons/icon'
+
