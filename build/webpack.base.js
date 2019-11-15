@@ -1,7 +1,6 @@
-
-const { resolve, isPro, mode } = require('./utils')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const webpack = require('webpack')
+const { resolve, isPro, mode } = require('./utils');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: {
@@ -52,25 +51,34 @@ module.exports = {
 								loader: 'style-resources-loader',
 								options: {
 									patterns: [
-										resolve('lib/style/*.scss')
+										resolve('lib/style/*.scss'),
 									]
 								}
 							}
 						]
 					})
-					: ['style-loader', 'css-loader', 'sass-loader']
-			},
+					: [
+						'style-loader', 'css-loader', 'sass-loader', {
+							loader: 'style-resources-loader',
+							options: {
+								patterns: [
+									resolve('lib/style/*.scss'),
+								]
+							}
+						}]
+			}
 		]
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+			'process.env.NODE_ENV': JSON.stringify(
+				process.env.NODE_ENV || 'development')
 		})
 	].concat(isPro ? [
 		new ExtractTextPlugin({
 			filename: 'css/[name].css'
 		})
-	] : []),
+	] : [])
 	// optimization: {
 	//   splitChunks: {
 	//     cacheGroups: {
@@ -87,5 +95,5 @@ module.exports = {
 	//     }
 	//   }
 	// }
-}
+};
 

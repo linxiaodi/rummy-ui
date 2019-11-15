@@ -5,6 +5,10 @@ html, body {
   margin: 0;
 }
 
+[class*=fisher-], [class*=fisher-]::before, [class*=fisher-]::after {
+  box-sizing: border-box;
+}
+
 #app, .box {
   height: inherit;
 }
@@ -19,4 +23,28 @@ html, body {
 
 .main {
   padding-left: 220px;
+}
+
+// icon component
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+  .icon-item {
+    box-sizing: border-box;
+    @include center(column);
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    .icon-item__name {
+      font-size: 14px;
+      margin-top: 14px;
+    }
+  }
 }
