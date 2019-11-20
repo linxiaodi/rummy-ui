@@ -9,6 +9,10 @@ html, body {
   box-sizing: border-box;
 }
 
+#app * {
+  box-sizing: border-box;
+}
+
 #app, .box {
   height: inherit;
 }
@@ -19,6 +23,9 @@ html, body {
   left: 0;
   height: 100vh;
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .main {

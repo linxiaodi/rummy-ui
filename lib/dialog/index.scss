@@ -1,15 +1,40 @@
-.fisher-dialog-mask {
+$scope: 'fisher-dialog';
+
+.#{$scope}-mask {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  bottom: 0;
+  right: 0;
+  z-index: 6;
   background: rgba(0,0,0,.85);
 }
 
-.fisher-dialog-body {
+.#{$scope} {
   width: 950px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
+  background: #fff;
+  z-index: 10;
+  border-radius: 6px;
+  &-close {
+    @include abs-column;
+    right: 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  &-header {
+    position: relative;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(34,36,38,.15);
+    &__title {
+    }
+  }
+
+  &-body {
+    padding: 20px;
+  }
 }
+

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'fisher-ui/icons/index.css'
 import './app.scss';
 import SideBar from './layout/side-bar'
 import Router from './router'

@@ -9,4 +9,5 @@
 // ReactDOM.render(<App/>, document.querySelector('#app'))
 
 export { default as Icon } from './icons'
-
+export { default as Dialog } from './dialog'
+export { default as Button} from './button'
