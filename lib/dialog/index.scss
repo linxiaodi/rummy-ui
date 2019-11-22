@@ -30,11 +30,21 @@ $scope: 'fisher-dialog';
     padding: 16px 20px;
     border-bottom: 1px solid rgba(34,36,38,.15);
     &__title {
+      font-size: 18px;
+      font-weight: 600;
     }
   }
 
   &-body {
     padding: 20px;
+  }
+  &-footer {
+    padding: 14px;
+    display: flex;
+    justify-content: flex-end;
+    .fisher-button {
+      margin-left: 8px;
+    }
   }
 }
 

@@ -35,9 +35,10 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 // }
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
-  const btnClass = cs('fisher-button', props.type && props.type === 'default' ? false : `fisher-button_${props.type}`);
+  const { className, ...resetProps } = props;
+  const btnClass = cs('fisher-button', props.type && props.type !== 'default' ? `fisher-button_${props.type}` : false, className);
   return (
-    <button className={btnClass}>{props.children}</button>
+    <button className={btnClass} {...(resetProps as Object)}>{props.children}</button>
   );
 };
 

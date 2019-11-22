@@ -16,11 +16,11 @@ interface DialogProps {
   className?: string,
   children?: string | React.ReactNode,
   onCancel?: () => any,
-  footer?: React.ReactNode | Array<React.ReactElement>
+  buttons?: React.ReactNode | Array<React.ReactElement>
 }
 
 const Dialog: React.FunctionComponent<DialogProps> = (props) => {
-  const { title, visible, footer } = props;
+  const { title, visible, buttons } = props;
   const wrapperClass = cs(props.className, scope('mask'), { hide: !visible });
   const dialogClass = cs({ hide: !visible }, scope());
   if (visible) {
@@ -31,13 +31,13 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
   const onCancel = () => props.onCancel && props.onCancel();
   // footer
   let dialogFooter;
-  if (Array.isArray(footer)) {
-    dialogFooter = (footer as Array<ReactElement>).map((Comp, i) => {
+  if (Array.isArray(buttons)) {
+    dialogFooter = (buttons as Array<ReactElement>).map((Comp, i) => {
       return React.cloneElement(Comp, { key: i });
     });
   } else {
-    if (footer) {
-      dialogFooter = footer;
+    if (buttons) {
+      dialogFooter = buttons;
     }
   }
   const result = (
