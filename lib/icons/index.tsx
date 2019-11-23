@@ -11,7 +11,8 @@ export type IconName = (typeof IconName)[number]
 
 interface IconProps {
   name: IconName,
-  className?: string
+  className?: string,
+  [propName: string]: any
 }
 
 

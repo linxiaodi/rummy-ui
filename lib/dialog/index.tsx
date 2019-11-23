@@ -12,15 +12,32 @@ const scope = scopeHelper('fisher-dialog');
 
 interface DialogProps {
   visible?: Boolean,
-  title: string | React.ReactNode,
+  title?: string | React.ReactNode,
   className?: string,
   children?: string | React.ReactNode,
   onCancel?: () => any,
-  buttons?: React.ReactNode | Array<React.ReactElement>
+  buttons?: React.ReactNode | Array<React.ReactElement>,
+  closeOnClickMask?: boolean,
+}
+
+interface Species {
+  content: React.ReactNode,
+  title: React.ReactNode,
+  afterClose?: () => void,
+}
+
+interface ModalProps extends Species {
+  buttons?: Array<React.ReactElement>
+}
+
+interface AlertProps extends Species {}
+
+interface ConfirmProps extends Species {
+  onOk?: () => void
 }
 
 const Dialog: React.FunctionComponent<DialogProps> = (props) => {
-  const { title, visible, buttons } = props;
+  const { title, visible, buttons, closeOnClickMask } = props;
   const wrapperClass = cs(props.className, scope('mask'), { hide: !visible });
   const dialogClass = cs({ hide: !visible }, scope());
   if (visible) {
@@ -33,6 +50,7 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
   let dialogFooter;
   if (Array.isArray(buttons)) {
     dialogFooter = (buttons as Array<ReactElement>).map((Comp, i) => {
+      // 重新复制一份，相当于一个简单的高阶函数
       return React.cloneElement(Comp, { key: i });
     });
   } else {
@@ -40,13 +58,29 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
       dialogFooter = buttons;
     }
   }
+
+  // 点击mask
+  const onMaskClick: React.MouseEventHandler = () => {
+    if (closeOnClickMask) {
+      onCancel();
+    }
+  };
+
+  // 点击esc
+  // const onEscKeyDown:React.KeyboardEventHandler = (e) => {
+  //   console.log(e.keyCode);
+  //   if (e.keyCode === 27 && props.keyboard) {
+  //     onCancel();
+  //   }
+  // }
+
   const result = (
     <Fragment>
-      <div onClick={onCancel} className={wrapperClass}/>
+      <div onClick={onMaskClick} className={wrapperClass}/>
       <div className={dialogClass}>
         <div className={scope('header')}>
           <div className={scope('header__title')}>{title}</div>
-          <Icon className={scope('close')} name="close"/>
+          <Icon onClick={onCancel} className={scope('close')} name="close"/>
         </div>
         <div className={scope('body')}>
           {props.children}
@@ -63,10 +97,65 @@ const Dialog: React.FunctionComponent<DialogProps> = (props) => {
   return ReactDOM.createPortal(result, document.body);
 };
 
+// export const alert = () => {
+// };
+
+/**
+ * modal('xxx', [], () => { 当触发关闭 })
+ * */
+
+export const modal = (props: ModalProps) => {
+  const { title, afterClose, buttons, content } = props;
+  const close = () => {
+    ReactDOM.render(React.cloneElement(component, { visible: false }), wrapper);
+    ReactDOM.unmountComponentAtNode(wrapper);
+    wrapper.remove();
+  }
+
+  const onCancel = () => {
+    afterClose && afterClose();
+    close();
+  };
+
+  const component = (<Dialog visible={true} buttons={buttons} onCancel={onCancel} title={title}>
+    {content}
+  </Dialog>);
+
+  const wrapper = document.createElement('div');
+
+  ReactDOM.render(component, wrapper)
+  document.body.append(wrapper);
+  return close;
+};
+
+export const alert = (props: AlertProps) => {
+  const closeBtn = <Button onClick={() => close()}>关闭</Button>
+  const close = modal({
+    ...props,
+    buttons: [closeBtn]
+  })
+}
+
+export const confirm = (props: ConfirmProps) => {
+  const { afterClose, onOk } = props;
+  const btns = [<Button onClick={() => {
+    close();
+    afterClose && afterClose();
+  }}>取消</Button>, <Button type="primary" onClick={() => {
+    close();
+    onOk && onOk();
+  }}>确定</Button>]
+  const close = modal({ ...props, buttons: btns });
+}
+
 // Dialog.propTypes = {
 // }
 
-// Dialog.defaultProps = {
-// }
+Dialog.defaultProps = {
+  closeOnClickMask: true
+};
+
+// Dialog.alert = alert;
+
 
 export default Dialog;
