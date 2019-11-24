@@ -17,7 +17,10 @@ module.exports = {
 	coverageDirectory: 'coverage', // 测试覆盖率生成指定目录
 	coverageReporters: ['text', 'lcov'], // 指定测试覆盖率生成的theme
 	// end 测试覆盖率
-	moduleNameMapper: {},
+	// mock file
+	moduleNameMapper: {
+		"\\.(css|less|sass|scss)$": "<rootDir>/test/__mocks__/object-mock.js",
+	},
 	// 测试选择
 	testMatch: ['<rootDir>/lib/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
 	transform: {
