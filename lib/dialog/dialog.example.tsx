@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { Dialog, modal, alert, confirm } from 'fisher-ui';
-import 'fisher-ui/dialog/index.scss'
 import { Button } from 'fisher-ui';
 
 

@@ -17,7 +17,9 @@ module.exports = {
 		extensions: ['*', '.ts', '.tsx', '.js', 'jsx', '.css', '.scss'],
 		alias: {
 			'@': resolve('src'),
-			'react-dom': '@hot-loader/react-dom'
+			'react-dom': '@hot-loader/react-dom',
+			'fisher-ui': resolve('lib'),
+			'fisher-ui/': resolve('lib/')
 		}
 	},
 	module: {
@@ -33,31 +35,11 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: isPro ? ExtractTextPlugin.extract({
-					use: [
-						'css-loader'
-					]
-				}) : ['style-loader', 'css-loader']
+				use: ['style-loader', 'css-loader']
 			},
 			{
 				test: /\.scss$/,
-				use: isPro
-					? ExtractTextPlugin.extract({
-						use: [
-							'style-loader',
-							'css-loader',
-							'sass-loader',
-							{
-								loader: 'style-resources-loader',
-								options: {
-									patterns: [
-										resolve('lib/style/*.scss'),
-									]
-								}
-							}
-						]
-					})
-					: [
+				use: [
 						'style-loader', 'css-loader', 'sass-loader', {
 							loader: 'style-resources-loader',
 							options: {
@@ -65,7 +47,7 @@ module.exports = {
 									resolve('lib/style/*.scss'),
 								]
 							}
-						}]
+					}]
 			}
 		]
 	},
@@ -74,11 +56,7 @@ module.exports = {
 			'process.env.NODE_ENV': JSON.stringify(
 				process.env.NODE_ENV || 'development')
 		})
-	].concat(isPro ? [
-		new ExtractTextPlugin({
-			filename: 'css/[name].css'
-		})
-	] : [])
+	]
 	// optimization: {
 	//   splitChunks: {
 	//     cacheGroups: {

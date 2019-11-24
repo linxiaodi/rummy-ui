@@ -1,13 +1,14 @@
 import React from 'react';
 import cs from 'classnames';
 import { tuple } from '../_util/type'
-import 'fisher-ui/icons/index.css'
+import 'fisher-ui/icons/index.scss'
 
 export const iconList = ['check-circle','close-circle', 'reload', 'edit-square', 'right', 'left', 'up', 'down', 'arrowright', 'arrowup', 'arrowleft', 'arrowdown', 'download', 'menu']
 
 const IconName = tuple(...iconList)
 
 export type IconName = (typeof IconName)[number]
+
 
 interface IconProps {
   name: IconName,
