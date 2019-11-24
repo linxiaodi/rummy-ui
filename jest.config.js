@@ -19,7 +19,7 @@ module.exports = {
 	// end 测试覆盖率
 	// mock file
 	moduleNameMapper: {
-		"\\.(css|less|sass|scss)$": "<rootDir>/test/__mocks__/object-mock.js",
+		"\\.(css|less|sass|scss)$": "<rootDir>/test/__mocks__/obj-mock.js",
 	},
 	// 测试选择
 	testMatch: ['<rootDir>/lib/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
