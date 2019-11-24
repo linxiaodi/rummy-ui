@@ -112,12 +112,12 @@ export const modal = (props: ModalProps) => {
     wrapper.remove();
   }
 
-  const onCancel = () => {
+  const onCancel  = () => {
     afterClose && afterClose();
     close();
   };
 
-  const component = (<Dialog visible={true} buttons={buttons} onCancel={onCancel} title={title}>
+  const component = (<Dialog visible={true} buttons={buttons} onCancel={onCancel } title={title}>
     {content}
   </Dialog>);
 
