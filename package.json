@@ -1,5 +1,5 @@
 {
-  "name": "fisher-ui",
+  "name": "rummy-ui",
   "version": "0.1.17",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",

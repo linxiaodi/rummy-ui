@@ -22,8 +22,8 @@
     "esModuleInterop": true,
 //    "noUnusedLocals": true,
     "paths": {
-      "fisher-ui": ["lib"],
-      "fisher-ui/*": ["lib/*"]
+      "rummy-ui": ["lib"],
+      "rummy-ui/*": ["lib/*"]
     }
   },
   "include": [

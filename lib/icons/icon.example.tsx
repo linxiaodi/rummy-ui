@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon } from 'fisher-ui'
-import { iconList } from 'fisher-ui/icons/index'
+import { Icon } from 'rummy-ui'
+import { iconList } from 'rummy-ui/icons/index'
 
 const IconExample = () => {
   return (

@@ -11,7 +11,7 @@ module.exports = merge(config, {
 	},
 	resolve: {
 		alias: {
-			'fisher-ui': resolve('lib/')
+			'rummy-ui': resolve('lib/')
 		}
 	},
 	plugins: [

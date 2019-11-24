@@ -5,7 +5,7 @@ html, body {
   margin: 0;
 }
 
-[class*=fisher-], [class*=fisher-]::before, [class*=fisher-]::after {
+[class*=rummy-], [class*=rummy-]::before, [class*=rummy-]::after {
   box-sizing: border-box;
 }
 
@@ -58,7 +58,7 @@ html, body {
 
 // Button component
 .rummy-demo {
-  .fisher-button {
+  .rummy-button {
     margin: 0 6px 12px 0;
   }
 }

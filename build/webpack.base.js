@@ -18,8 +18,8 @@ module.exports = {
 		alias: {
 			'@': resolve('src'),
 			'react-dom': '@hot-loader/react-dom',
-			'fisher-ui': resolve('lib'),
-			'fisher-ui/': resolve('lib/')
+			'rummy-ui': resolve('lib'),
+			'rummy-ui/': resolve('lib/')
 		}
 	},
 	module: {

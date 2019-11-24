@@ -1,14 +1,14 @@
 // @ts-ignore
 import React, { Fragment, ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-import { Icon } from 'fisher-ui';
+import { Icon } from 'rummy-ui';
 import cs from 'classnames';
 import { setBodyOverflow } from '../_util/dom';
-import { Button } from 'fisher-ui';
+import { Button } from 'rummy-ui';
 import './index.scss';
-import { scopeHelper } from 'fisher-ui/_util/helpers';
+import { scopeHelper } from 'rummy-ui/_util/helpers';
 
-const scope = scopeHelper('fisher-dialog');
+const scope = scopeHelper('rummy-dialog');
 
 interface DialogProps {
   visible?: Boolean,

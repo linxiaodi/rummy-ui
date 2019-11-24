@@ -1,4 +1,4 @@
-$scope: 'fisher-dialog';
+$scope: 'rummy-dialog';
 
 .#{$scope}-mask {
   position: absolute;
@@ -42,7 +42,7 @@ $scope: 'fisher-dialog';
     padding: 14px;
     display: flex;
     justify-content: flex-end;
-    .fisher-button {
+    .rummy-button {
       margin-left: 8px;
     }
   }

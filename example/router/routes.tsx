@@ -1,6 +1,6 @@
-import IconExample from 'fisher-ui/icons/icon.example';
-import DialogExample from 'fisher-ui/dialog/dialog.example';
-import ButtonExample from 'fisher-ui/button/button.example';
+import IconExample from 'rummy-ui/icons/icon.example';
+import DialogExample from 'rummy-ui/dialog/dialog.example';
+import ButtonExample from 'rummy-ui/button/button.example';
 
 const routes = [
   {

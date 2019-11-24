@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { Dialog, modal, alert, confirm } from 'fisher-ui';
-import { Button } from 'fisher-ui';
+import { Dialog, modal, alert, confirm } from 'rummy-ui';
+import { Button } from 'rummy-ui';
 
 
 const DialogExample = () => {

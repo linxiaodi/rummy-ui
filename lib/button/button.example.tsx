@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'fisher-ui';
+import { Button } from 'rummy-ui';
 
 const ButtonExample = () => {
   return (
