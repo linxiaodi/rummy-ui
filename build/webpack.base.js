@@ -1,5 +1,5 @@
 const { resolve, isPro, mode } = require('./utils');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -25,6 +25,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.css$/,
+				use: [
+					isPro ? MiniCssExtractPlugin.loader : 'style-loader',
+					'css-loader'
+				]
+			},
+			{
 				test: /\.tsx?$/,
 				use: ['awesome-typescript-loader'],
 				exclude: [/node_modules/]
@@ -34,13 +41,9 @@ module.exports = {
 				loader: require.resolve('babel-loader')
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
-			},
-			{
 				test: /\.scss$/,
 				use: [
-						'style-loader', 'css-loader', 'sass-loader', {
+					isPro ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader', {
 							loader: 'style-resources-loader',
 							options: {
 								patterns: [

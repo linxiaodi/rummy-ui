@@ -36,7 +36,11 @@ interface ConfirmProps extends Species {
   onOk?: () => void
 }
 
-const Dialog: React.FunctionComponent<DialogProps> = (props) => {
+interface DialogType extends React.FunctionComponent<DialogProps> {
+  alert?: (props: AlertProps) => any
+}
+
+const Dialog: DialogType = (props) => {
   const { title, visible, buttons, closeOnClickMask } = props;
   const wrapperClass = cs(props.className, scope('mask'), { hide: !visible });
   const dialogClass = cs({ hide: !visible }, scope());
@@ -155,7 +159,7 @@ Dialog.defaultProps = {
   closeOnClickMask: true
 };
 
-// Dialog.alert = alert;
+Dialog.alert = alert;
 
 
 export default Dialog;

@@ -1,7 +1,7 @@
 import React from 'react';
 import cs from 'classnames';
 import { tuple } from '../_util/type'
-import 'rummy-ui/icons/index.scss'
+import 'rummy-ui/icons/index.css'
 
 export const iconList = ['check-circle','close-circle', 'reload', 'edit-square', 'right', 'left', 'up', 'down', 'arrowright', 'arrowup', 'arrowleft', 'arrowdown', 'download', 'menu']
 
