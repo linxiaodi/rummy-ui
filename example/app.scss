@@ -29,7 +29,7 @@ html, body {
 }
 
 .main {
-  padding-left: 220px;
+  padding: 20px 32px;
 }
 
 // icon component
@@ -60,5 +60,59 @@ html, body {
 .rummy-demo {
   .rummy-button {
     margin: 0 6px 12px 0;
+  }
+}
+
+.rummy-example-header {
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.rummy-example-sider {
+  width: 300px;
+  padding: 20px;
+  font-size: 14px;
+  .sider-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    transition: color .6s;
+    &:hover {
+      color: #1890ff;
+    }
+  }
+}
+
+.rummy-example-footer {
+  color: #fff;
+  background: #000;
+  text-align: center;
+  font-size: 14px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+  img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+  }
+  .name {
+    font-size: 15px;
   }
 }

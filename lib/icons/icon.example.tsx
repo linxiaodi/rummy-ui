@@ -9,8 +9,8 @@ const IconExample = () => {
       <div className="icon-list">
         {
           iconList.map((name) => {
-            return <div className="icon-item">
-              <Icon name={name} key={name} />
+            return <div key={name} className="icon-item">
+              <Icon name={name} />
               <div className="icon-item__name">{name}</div>
             </div>
           })

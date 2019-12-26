@@ -4,10 +4,10 @@ import routes from '../router/routes'
 
 const SideBar = () => {
   return (
-    <div className="sidebar">
+    <div>
       {
         routes.map((route) => {
-          return <Link key={route.path} to={route.path}>{route.sidebar}</Link>
+          return <Link className="sider-link" key={route.path} to={route.path}>{route.sidebar}</Link>
         })
       }
     </div>

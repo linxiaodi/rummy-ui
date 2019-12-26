@@ -1,0 +1,41 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rummy-example-layout {
+  .rummy-layout {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    height: 300px;
+    &:not(:first-of-type) {
+      margin-top: 50px;
+    }
+  }
+
+  .rummy-layout-header {
+    color: #fff;
+    background: #7dbcea;
+    height: 60px;
+    @include center;
+  }
+
+  .rummy-layout-content {
+    background: rgba(16, 142, 233, 1);
+    @include center;
+  }
+
+  .rummy-layout-footer {
+    background: #7dbcea;
+    @include center;
+    height: 40px;
+  }
+
+  .rummy-layout-sider {
+    @include center;
+    background: #3ba0e9;
+    width: 200px;
+  }
+
+}
