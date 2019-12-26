@@ -1,4 +1,4 @@
-const { resolve, isPro, mode } = require('./utils');
+const { resolve, isPro, mode, PORT } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
@@ -13,6 +13,7 @@ module.exports = {
 		publicPath: '/'
 	},
 	mode,
+	stats: 'errors-only',
 	resolve: {
 		extensions: ['*', '.ts', '.tsx', '.js', 'jsx', '.css', '.scss'],
 		alias: {
