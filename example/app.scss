@@ -3,6 +3,7 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
+  color: rgba(0,0,0,.87);
 }
 
 [class*=rummy-], [class*=rummy-]::before, [class*=rummy-]::after {
@@ -53,6 +54,10 @@ html, body {
       font-size: 14px;
       margin-top: 14px;
     }
+    i {
+      display: block;
+      line-height: 1;
+    }
   }
 }
 
@@ -63,15 +68,26 @@ html, body {
   }
 }
 
-.rummy-example-header {
+.ru-example-header {
   height: 64px;
   padding: 0 32px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #f2f2f2;
+  .header-side {
+    height: inherit;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .header-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-.rummy-example-sider {
+// 侧边栏
+.ru-example-sider {
   width: 300px;
   padding: 20px;
   font-size: 14px;
@@ -85,10 +101,13 @@ html, body {
     &:hover {
       color: #1890ff;
     }
+    &_active {
+      color: #1890ff;
+    }
   }
 }
 
-.rummy-example-footer {
+.ru-example-footer {
   color: #fff;
   background: #000;
   text-align: center;
@@ -114,5 +133,12 @@ html, body {
   }
   .name {
     font-size: 15px;
+  }
+}
+
+
+.ru-demo-input {
+  .ru-input {
+    width: 400px;
   }
 }

@@ -25,13 +25,13 @@ interface LayoutProperty {
 const Layout: React.FunctionComponent<LayoutProps> & LayoutProperty = (props) => {
   const { className, children } = props;
   const hasSider = Array.isArray(children) && (children as Array<React.ReactElement>).find(node => node && (node.type === Layout.Sider));
-  return <div className={cs('rummy-layout', cs(className, { 'rummy-layout_has-sider': !!hasSider }))}>{ children }</div>;
+  return <div className={cs('ru-layout', cs(className, { 'ru-layout_has-sider': !!hasSider }))}>{ children }</div>;
 };
 
 // 衍生器模板
 const Basic: React.FunctionComponent<BasicProps & GeneratorProps> = (props) => {
   const { suffixCls, className: extraCls, children } = props;
-  const className = cs(`rummy-layout-${suffixCls}`, extraCls)
+  const className = cs(`ru-layout-${suffixCls}`, extraCls)
   return React.createElement(props.tagName, { className }, children)
 }
 

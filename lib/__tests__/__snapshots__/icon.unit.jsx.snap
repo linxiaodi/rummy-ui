@@ -2,6 +2,6 @@
 
 exports[`icon component test props name 1`] = `
 <i
-  className="rummy-icon rummy-icon-alibaba"
+  className="ru-icon ru-icon-alibaba"
 />
 `;

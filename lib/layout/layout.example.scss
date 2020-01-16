@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
 }
-.rummy-example-layout {
-  .rummy-layout {
+.ru-example-layout {
+  .ru-layout {
     color: #fff;
     font-size: 16px;
     text-align: center;
@@ -14,25 +14,25 @@
     }
   }
 
-  .rummy-layout-header {
+  .ru-layout-header {
     color: #fff;
     background: #7dbcea;
     height: 60px;
     @include center;
   }
 
-  .rummy-layout-content {
+  .ru-layout-content {
     background: rgba(16, 142, 233, 1);
     @include center;
   }
 
-  .rummy-layout-footer {
+  .ru-layout-footer {
     background: #7dbcea;
     @include center;
     height: 40px;
   }
 
-  .rummy-layout-sider {
+  .ru-layout-sider {
     @include center;
     background: #3ba0e9;
     width: 200px;

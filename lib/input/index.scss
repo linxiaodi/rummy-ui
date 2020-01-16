@@ -1,0 +1,43 @@
+$input-middle: 32px;
+$input-lg: 32px;
+$input-sm: 22;
+
+.ru-input-wrapper {
+}
+
+.ru-input {
+  padding: 4px 11px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: $input-middle;
+  vertical-align: middle;
+  outline: none;
+  line-height: $input-middle;
+  border: 1px solid rgba(34,36,38,.15);
+  transition: all .8s;
+  border-radius: 4px;
+  &:focus {
+    border-color: rgb(133, 183, 217);
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+  &:hover {
+    border-color: rgb(133, 183, 217);
+  }
+  &.ru-input-lg {
+     height: $input-lg;
+     line-height: $input-lg;
+      padding: 6px 11px;
+   }
+  &.ru-input-sm {
+    height: $input-sm;
+    line-height: $input-sm;
+    padding: 1px 7px;
+  }
+  &.ru-input-disabled {
+    background: #f2f2f2;
+    cursor: not-allowed;
+    color: #5e5e66;
+    border-color: #bfbfbf;
+  }
+}

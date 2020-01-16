@@ -31,6 +31,7 @@ module.exports = merge(config, {
 		port: PORT,
 		hot: true,
 		historyApiFallback: true,
+		quiet: true,
 		stats: 'errors-only'
 	}
 });

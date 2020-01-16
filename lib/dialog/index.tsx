@@ -8,7 +8,7 @@ import { Button } from 'rummy-ui';
 import './index.scss';
 import { scopeHelper } from 'rummy-ui/_util/helpers';
 
-const scope = scopeHelper('rummy-dialog');
+const scope = scopeHelper('ru-dialog');
 
 interface DialogProps {
   visible?: Boolean,

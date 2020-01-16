@@ -5,6 +5,16 @@
   flex-direction: $dir;
 }
 
+@mixin center-column {
+  display: flex;
+  align-items: center;
+}
+
+@mixin center-row {
+  display: flex;
+  justify-content: center;
+}
+
 @mixin abs-column {
   position: absolute;
   top: 50%;

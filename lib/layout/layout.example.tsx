@@ -6,7 +6,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const LayoutExample = () => {
   return (
-    <div className="rummy-example-layout">
+    <div className="ru-example-layout">
       <h2>Layout 组件</h2>
       <Layout>
         <Header>header</Header>

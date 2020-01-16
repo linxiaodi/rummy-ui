@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="4" failures="0" time="5.205">
+  <testsuite name="input component" errors="0" failures="0" skipped="0" timestamp="2020-01-15T16:52:11" time="2.608" tests="2">
+    <testcase classname="input component large size" name="input component large size" time="0.004">
+    </testcase>
+    <testcase classname="input component disabled" name="input component disabled" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="icon component" errors="0" failures="0" skipped="0" timestamp="2020-01-15T16:52:13" time="0.264" tests="2">
+    <testcase classname="icon component test props name" name="icon component test props name" time="0.004">
+    </testcase>
+    <testcase classname="icon component trigger click event" name="icon component trigger click event" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>

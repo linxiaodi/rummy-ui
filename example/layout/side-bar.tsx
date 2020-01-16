@@ -1,17 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import routes from '../router/routes'
+import { Link, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
+import routes from '../router/routes';
+import cs from 'classnames';
 
-const SideBar = () => {
+const SideBar: React.FunctionComponent<RouteComponentProps> = (props) => {
   return (
     <div>
       {
         routes.map((route) => {
-          return <Link className="sider-link" key={route.path} to={route.path}>{route.sidebar}</Link>
+          const cls = cs('sider-link', { 'sider-link_active': props.location.pathname === route.path })
+          return <Link className={cls} key={route.path} to={route.path}>{route.sidebar}</Link>;
         })
       }
     </div>
   );
 };
 
-export default SideBar;
+export default withRouter(SideBar);

@@ -3,7 +3,7 @@ import cs from 'classnames';
 import { tuple } from '../_util/type'
 import 'rummy-ui/icons/index.css'
 
-export const iconList = ['check-circle','close-circle', 'reload', 'edit-square', 'right', 'left', 'up', 'down', 'arrowright', 'arrowup', 'arrowleft', 'arrowdown', 'download', 'menu']
+export const iconList = ['check-circle','close-circle', 'reload', 'edit-square', 'right', 'left', 'up', 'down', 'arrowright', 'arrowup', 'arrowleft', 'arrowdown', 'download', 'menu', 'loading']
 
 const IconName = tuple(...iconList)
 
@@ -20,7 +20,7 @@ interface IconProps {
 
 const Index: React.FunctionComponent<IconProps> = (props) => {
   const { className, name, ...rest } = props;
-  const classNames = cs('rummy-icon', className, `rummy-icon-${name}`);
+  const classNames = cs('ru-icon', className, `ru-icon-${name}`);
   return (
     <i className={classNames} {...rest} />
   );
