@@ -1,4 +1,6 @@
-$input-middle: 32px;
+$input-md-height: 36px;
+$input-lg-height: 42px;
+$input-sm-height: 30px;
 $input-lg: 32px;
 $input-sm: 22;
 
@@ -10,10 +12,10 @@ $input-sm: 22;
   display: inline-block;
   position: relative;
   width: 100%;
-  height: $input-middle;
+  height: $input-md-height;
   vertical-align: middle;
   outline: none;
-  line-height: $input-middle;
+  line-height: $input-md-height;
   border: 1px solid rgba(34,36,38,.15);
   transition: all .8s;
   border-radius: 4px;
@@ -25,13 +27,13 @@ $input-sm: 22;
     border-color: rgb(133, 183, 217);
   }
   &.ru-input-lg {
-     height: $input-lg;
-     line-height: $input-lg;
+     height: $input-lg-height;
+     line-height: $input-lg-height;
       padding: 6px 11px;
    }
   &.ru-input-sm {
-    height: $input-sm;
-    line-height: $input-sm;
+    height: $input-sm-height;
+    line-height: $input-sm-height;
     padding: 1px 7px;
   }
   &.ru-input-disabled {

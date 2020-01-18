@@ -10,10 +10,6 @@ html, body {
   box-sizing: border-box;
 }
 
-#app * {
-  box-sizing: border-box;
-}
-
 #app, .box {
   height: inherit;
 }
@@ -140,5 +136,13 @@ html, body {
 .ru-demo-input {
   .ru-input {
     width: 400px;
+  }
+}
+
+.ru-demo-input-size {
+  display: flex;
+  flex-direction: column;
+  .ru-input {
+    margin-bottom: 20px;
   }
 }

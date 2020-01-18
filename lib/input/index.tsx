@@ -3,16 +3,19 @@ import cs from 'classnames';
 import './index.scss';
 
 interface InputProps {
-  size?: 'small' | 'middle' | 'large',
+  size?: 'sm' | 'md' | 'lg',
   className?: string,
   type?: 'text' | 'password',
   placeholder?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  onChange?: React.ChangeEventHandler<HTMLInputElement>,
+  onBlur?: React.ChangeEventHandler<HTMLInputElement>,
+  value?: string
 }
 
 const sizeClassMap: { [index: string]: any } = {
-  small: 'ru-input-sm',
-  large: 'ru-input-lg'
+  sm: 'ru-input-sm',
+  lg: 'ru-input-lg'
 };
 
 const Input: React.FunctionComponent<InputProps> = (props) => {
@@ -24,7 +27,7 @@ const Input: React.FunctionComponent<InputProps> = (props) => {
 };
 
 Input.defaultProps = {
-  size: 'middle',
+  size: 'md',
   type: 'text',
   placeholder: '请输入'
 };
