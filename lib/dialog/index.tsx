@@ -1,12 +1,11 @@
 // @ts-ignore
 import React, { Fragment, ReactElement } from 'react';
 import ReactDOM from 'react-dom';
-import { Icon } from 'rummy-ui';
 import cs from 'classnames';
 import { setBodyOverflow } from '../_util/dom';
-import { Button } from 'rummy-ui';
+import { Button, Icon } from '..';
 import './index.scss';
-import { scopeHelper } from 'rummy-ui/_util/helpers';
+import { scopeHelper } from '../_util/helpers';
 
 const scope = scopeHelper('ru-dialog');
 

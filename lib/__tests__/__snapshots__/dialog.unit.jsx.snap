@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dialog render correct 1`] = `
+<Dialog
+  closeOnClickMask={true}
+  visible={true}
+>
+  <Portal
+    containerInfo={
+      <body
+        style="overflow: hidden;"
+      >
+        <div
+          class="ru-dialog-mask"
+        />
+        <div
+          class="ru-dialog"
+        >
+          <div
+            class="ru-dialog-header"
+          >
+            <div
+              class="ru-dialog-header__title"
+            />
+            <i
+              class="ru-icon ru-dialog-close ru-icon-close"
+            />
+          </div>
+          <div
+            class="ru-dialog-body"
+          >
+            Dialog12
+          </div>
+        </div>
+      </body>
+    }
+  >
+    <div
+      className="ru-dialog-mask"
+      onClick={[Function]}
+    />
+    <div
+      className="ru-dialog"
+    >
+      <div
+        className="ru-dialog-header"
+      >
+        <div
+          className="ru-dialog-header__title"
+        />
+        <Index
+          className="ru-dialog-close"
+          name="close"
+          onClick={[Function]}
+        >
+          <i
+            className="ru-icon ru-dialog-close ru-icon-close"
+            onClick={[Function]}
+          />
+        </Index>
+      </div>
+      <div
+        className="ru-dialog-body"
+      >
+        Dialog12
+      </div>
+    </div>
+  </Portal>
+</Dialog>
+`;
+
+exports[`modal render correct 1`] = `
+<Dialog
+  closeOnClickMask={true}
+  visible={true}
+>
+  <Portal
+    containerInfo={
+      <body
+        style="overflow: hidden;"
+      >
+        <div
+          class="ru-dialog-mask"
+        />
+        <div
+          class="ru-dialog"
+        >
+          <div
+            class="ru-dialog-header"
+          >
+            <div
+              class="ru-dialog-header__title"
+            />
+            <i
+              class="ru-icon ru-dialog-close ru-icon-close"
+            />
+          </div>
+          <div
+            class="ru-dialog-body"
+          >
+            Dialog12
+          </div>
+        </div>
+      </body>
+    }
+  >
+    <div
+      className="ru-dialog-mask"
+      onClick={[Function]}
+    />
+    <div
+      className="ru-dialog"
+    >
+      <div
+        className="ru-dialog-header"
+      >
+        <div
+          className="ru-dialog-header__title"
+        />
+        <Index
+          className="ru-dialog-close"
+          name="close"
+          onClick={[Function]}
+        >
+          <i
+            className="ru-icon ru-dialog-close ru-icon-close"
+            onClick={[Function]}
+          />
+        </Index>
+      </div>
+      <div
+        className="ru-dialog-body"
+      >
+        Dialog12
+      </div>
+    </div>
+  </Portal>
+</Dialog>
+`;
