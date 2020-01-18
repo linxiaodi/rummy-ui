@@ -13,4 +13,4 @@ export { default as Dialog, modal, alert, confirm } from './dialog';
 export { default as Button } from './button';
 export { default as Layout } from './layout/index';
 export { default as Input } from './input/index';
-
+export { default as Form } from './form/index';
