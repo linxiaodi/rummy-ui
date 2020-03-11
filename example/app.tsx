@@ -11,7 +11,7 @@ const { Header, Footer, Sider, Content } = Layout;
 import { hot } from 'react-hot-loader/root';
 
 let App = () => (<BrowserRouter>
-		<Layout>
+		<Layout className="box">
       <Header className="ru-example-header">
         <Link className="logo" to="/">
           <img src="https://i.loli.net/2019/12/26/dfWhG1byne8jNat.png" alt=""/>

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { HTMLAttributes, useState } from 'react';
 import cs from 'classnames';
 import './index.scss';
 
-interface InputProps {
+interface InputProps extends HTMLAttributes<HTMLInputElement>{
   size?: 'sm' | 'md' | 'lg',
   className?: string,
   type?: 'text' | 'password',
@@ -13,23 +13,24 @@ interface InputProps {
   value?: string
 }
 
-const sizeClassMap: { [index: string]: any } = {
+const sizeClassMap: { [index: string]: string } = {
   sm: 'ru-input-sm',
   lg: 'ru-input-lg'
 };
 
 const Input: React.FunctionComponent<InputProps> = (props) => {
-  const { className, size, ...reset } = props;
+  const { className, size, ...rest } = props;
   const sizeClass = size ? sizeClassMap[size] : null;
   return (
-    <input className={cs('ru-input', className, sizeClass, reset.disabled ? 'ru-input-disabled' : false)} {...reset}/>
+    <input className={cs('ru-input', className, sizeClass, rest.disabled ? 'ru-input-disabled' : false)} {...rest}/>
   );
 };
 
 Input.defaultProps = {
   size: 'md',
   type: 'text',
-  placeholder: '请输入'
+  placeholder: '请输入',
+  disabled: false
 };
 
 export default Input;

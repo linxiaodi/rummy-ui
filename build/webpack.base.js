@@ -17,7 +17,7 @@ module.exports = {
 	resolve: {
 		extensions: ['*', '.ts', '.tsx', '.js', 'jsx', '.css', '.scss'],
 		alias: {
-			'@': resolve('src'),
+			'@': resolve('lib'),
 			'react-dom': '@hot-loader/react-dom',
 			'rummy-ui': resolve('lib'),
 			'rummy-ui/': resolve('lib/')
@@ -48,10 +48,15 @@ module.exports = {
 							loader: 'style-resources-loader',
 							options: {
 								patterns: [
-									resolve('lib/style/*.scss'),
+									resolve('lib/style/index.scss'),
+									resolve('lib/style/mixin-layout.scss'),
 								]
 							}
 					}]
+			},
+			{
+				test: /\.md$/,
+				use: ['raw-loader']
 			}
 		]
 	},

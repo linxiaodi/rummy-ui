@@ -1,11 +1,13 @@
 import React from 'react';
 import { Icon } from 'rummy-ui'
 import { iconList } from 'rummy-ui/icons/index'
+import Demo from '../../example/demo'
 
 const IconExample = () => {
   return (
     <div>
-      <h2>Icon组件</h2>
+      <h2>Icon图标</h2>
+      <p>提供了一套常用的图标集合</p>
       <div className="icon-list">
         {
           iconList.map((name) => {
@@ -16,6 +18,7 @@ const IconExample = () => {
           })
         }
       </div>
+      <Demo path="icons/examples/1.tsx"/>
     </div>
   );
 };

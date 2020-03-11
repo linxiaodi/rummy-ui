@@ -1,25 +1,17 @@
 $scope: 'rummy';
+$main: #85B7D9;
 $text-color: #515a6e;
 $primary: #2d8cf0;
 $success: #19be6b;
 $warning: #f90;
 $error: #ed4014;
+$default-border: rgba(34,36,38,.15);
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-}
+$disable: #f2f2f2;
+$disable-text: #5e5e66;
+$disable-border: #bfbfbf;
 
-[class^=ru-] {
-  box-sizing: border-box;
-}
-
-[class^=ru-]::before, [class^=ru-]::after {
-  box-sizing: border-box;
-}
-
-.hide {
-  display: none;
-}
+$mask-bg: rgba(0,0,0,.85);
 
 @mixin center($dir: row) {
   display: flex;

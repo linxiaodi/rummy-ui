@@ -10,8 +10,8 @@ html, body {
   box-sizing: border-box;
 }
 
-#app, .box {
-  height: inherit;
+.box {
+  min-height: 100vh;
 }
 
 .sidebar {

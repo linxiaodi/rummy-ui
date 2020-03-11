@@ -7,6 +7,7 @@
 // const App = process.env.NODE_ENV === 'development' ? hot(Hello) : Hello
 //
 // ReactDOM.render(<App/>, document.querySelector('#app'))
+import './style/common.scss';
 
 export { default as Icon } from './icons';
 export { default as Dialog, modal, alert, confirm } from './dialog';

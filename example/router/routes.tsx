@@ -1,8 +1,8 @@
-import IconExample from 'rummy-ui/icons/icon.example';
-import DialogExample from 'rummy-ui/dialog/dialog.example';
-import ButtonExample from 'rummy-ui/button/button.example';
-import LayoutExample from 'rummy-ui/layout/layout.example';
-import InputExample from 'rummy-ui/input/input.example'
+import IconExample from '../../lib/icons/icon.example';
+import DialogExample from '../../lib/dialog/dialog.example';
+import ButtonExample from '../../lib/button/button.example';
+import LayoutExample from '../../lib/layout/layout.example';
+import InputExample from '../../lib/input/input.example'
 
 const routes = [
   {

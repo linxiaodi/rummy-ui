@@ -12,34 +12,31 @@ $input-sm: 22;
   display: inline-block;
   position: relative;
   width: 100%;
-  height: $input-md-height;
   vertical-align: middle;
   outline: none;
-  line-height: $input-md-height;
-  border: 1px solid rgba(34,36,38,.15);
+  line-height: 2;
+  border: 1px solid $default-border;
   transition: all .8s;
   border-radius: 4px;
   &:focus {
-    border-color: rgb(133, 183, 217);
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    border-color: $main;
+    box-shadow: 0 0 0 2px fade_out($main, .8);
   }
   &:hover {
-    border-color: rgb(133, 183, 217);
+    border-color: $main;
   }
   &.ru-input-lg {
-     height: $input-lg-height;
-     line-height: $input-lg-height;
+      line-height: 2.2;
       padding: 6px 11px;
    }
   &.ru-input-sm {
-    height: $input-sm-height;
-    line-height: $input-sm-height;
-    padding: 1px 7px;
+    line-height: 1.8;
+    padding: 2px 8px;
   }
   &.ru-input-disabled {
-    background: #f2f2f2;
+    background: $disable;
     cursor: not-allowed;
-    color: #5e5e66;
-    border-color: #bfbfbf;
+    color: $disable-text;
+    border-color: $disable-border;
   }
 }

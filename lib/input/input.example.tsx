@@ -17,6 +17,8 @@ const InputExample = () => {
         <Input size="md"/>
         <Input size="sm"/>
       </div>
+      <h3>Disabled</h3>
+      <Input disabled/>
     </div>
   );
 };

@@ -7,7 +7,7 @@ $scope: 'ru-dialog';
   bottom: 0;
   right: 0;
   z-index: 6;
-  background: rgba(0,0,0,.85);
+  background: $mask-bg;
 }
 
 .#{$scope} {
