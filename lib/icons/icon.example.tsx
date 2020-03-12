@@ -18,7 +18,7 @@ const IconExample = () => {
           })
         }
       </div>
-      <Demo path="icons/examples/1.tsx"/>
+      <Demo title="使用方法" desc="通过设置对应的name属性" path="icons/examples/1.tsx"/>
     </div>
   );
 };

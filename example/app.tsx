@@ -27,7 +27,7 @@ let App = () => (<BrowserRouter>
           </a>
         </div>
       </Header>
-      <Layout>
+      <Layout className="ru-example-container">
         <Sider className="ru-example-sider">
           <SideBar/>
         </Sider>

@@ -1,9 +1,19 @@
+@import 'styles/markdown.scss';
+@import 'styles/demo.scss';
+
+$border-color: #eaeefb;
+$text-color: rgba(0,0,0,0.85);
+
 html, body {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  color: rgba(0,0,0,.87);
+  color: $text-color;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', Arial,
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
 }
 
 [class*=rummy-], [class*=rummy-]::before, [class*=rummy-]::after {
@@ -26,7 +36,7 @@ html, body {
 }
 
 .main {
-  padding: 20px 32px;
+  padding: 0 32px;
 }
 
 // icon component
@@ -35,8 +45,8 @@ html, body {
   display: flex;
   flex-wrap: wrap;
   width: 600px;
-  border-top: 1px solid #eee;
-  border-left: 1px solid #eee;
+  border-top: 1px solid $border-color;
+  border-left: 1px solid $border-color;
   .icon-item {
     box-sizing: border-box;
     @include center(column);
@@ -44,8 +54,8 @@ html, body {
     width: 100px;
     height: 100px;
     font-size: 30px;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
     .icon-item__name {
       font-size: 14px;
       margin-top: 14px;
@@ -82,11 +92,17 @@ html, body {
   }
 }
 
+.ru-example-container {
+  width: 1200px;
+  margin: 40px auto;
+}
+
 // 侧边栏
 .ru-example-sider {
-  width: 300px;
-  padding: 20px;
+  width: 200px;
+  padding: 0 20px;
   font-size: 14px;
+  border-right: 1px solid $border-color;
   .sider-link {
     display: block;
     color: inherit;
@@ -145,4 +161,11 @@ html, body {
   .ru-input {
     margin-bottom: 20px;
   }
+}
+
+.prism-code {
+  box-sizing: border-box;
+  padding: 10px 15px;
+  font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+  font-size: 12px;
 }
