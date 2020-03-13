@@ -2,7 +2,7 @@ import React from 'react';
 import './app.scss';
 import SideBar from './layout/side-bar';
 import Router from './router';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link, HashRouter } from 'react-router-dom';
 import { Layout } from 'rummy-ui';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -10,7 +10,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 import { hot } from 'react-hot-loader/root';
 
-let App = () => (<BrowserRouter>
+let App = () => (<HashRouter>
 		<Layout className="box">
       <Header className="ru-example-header">
         <Link className="logo" to="/">
@@ -39,6 +39,6 @@ let App = () => (<BrowserRouter>
         copyright@2019 linweikun
       </Footer>
     </Layout>
-</BrowserRouter>);
+</HashRouter>);
 
 export default hot(App);

@@ -8,20 +8,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const pck = require('../package')
 
+config.entry = {
+	index: resolve('./example/index')
+}
+
+config.output = {
+	path: resolve('docs'),
+	filename: '[name].[chunkhash:8].js',
+	publicPath: pck.homepage
+}
+
 module.exports = merge(config, {
 	stats: 'none',
-	entry: {
-		index: resolve('./example/index')
-	},
 	resolve: {
 		alias: {
 			'rummy-ui': resolve('lib/')
 		}
-	},
-	output: {
-		path: resolve('docs'),
-		filename: '[name].[chunkhash:8].js',
-		publicPath: pck.homepage
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
