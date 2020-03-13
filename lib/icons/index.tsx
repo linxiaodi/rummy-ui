@@ -3,7 +3,7 @@ import cs from 'classnames';
 import { tuple } from '../_util/type'
 import 'rummy-ui/icons/index.css'
 
-export const iconList = ['check-circle','close-circle', 'reload', 'edit-square', 'right', 'left', 'up', 'down', 'arrowright', 'arrowup', 'arrowleft', 'arrowdown', 'download', 'menu', 'loading']
+export const iconList = ['caret-bottom', 'warning', 'caret-top', 'person', 'help-circled', 'circle-more', 'warning-circled', 'circle', 'clock', 'date', 'set', 'close', 'check', 'arrow-down', 'plus', 'circle-close', 'loading', 'edit'];
 
 const IconName = tuple(...iconList)
 

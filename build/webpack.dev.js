@@ -11,6 +11,11 @@ module.exports = merge(config, {
 	entry: {
 		index: resolve('./example/index')
 	},
+	output: {
+		path: resolve('site'),
+		filename: '[name].js',
+		publicPath: '/'
+	},
 	resolve: {
 		alias: {
 			'rummy-ui': resolve('lib/')
