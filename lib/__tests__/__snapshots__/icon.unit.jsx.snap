@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`icon component test props name 1`] = `
-<i
-  className="ru-icon ru-icon-alibaba"
-/>
-`;
