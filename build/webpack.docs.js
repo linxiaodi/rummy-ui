@@ -1,12 +1,12 @@
 /**
  * 官网打包
  * */
-
 const merge = require('webpack-merge');
 const config = require('./webpack.base');
 const { resolve, PORT } = require('./utils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const pck = require('../package')
 
 module.exports = merge(config, {
 	stats: 'none',
@@ -21,7 +21,7 @@ module.exports = merge(config, {
 	output: {
 		path: resolve('docs'),
 		filename: '[name].[chunkhash:8].js',
-		publicPath: '/'
+		publicPath: pck.homepage
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

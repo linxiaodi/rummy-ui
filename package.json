@@ -12,6 +12,7 @@
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT_DIR=./test-results/jest JEST_JUNIT_OUTPUT_NAME=results.xml jest --config=jest.config.js",
     "depoly": "sh ./depoly.sh"
   },
+  "honepage": "https://linxiaodi.github.io/rummy-ui/",
   "files": [
     "./dist",
     "./dist/**/*.css"
@@ -19,7 +20,7 @@
   "types": "./dist/lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linxiaodi/unknow-ui.git"
+    "url": "git+https://github.com/linxiaodi/rummy-ui.git"
   },
   "keywords": [],
   "author": "latiao",
