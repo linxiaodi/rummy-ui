@@ -12,7 +12,7 @@ module.exports = merge(config, {
 		index: resolve('./example/index')
 	},
 	output: {
-		path: resolve('site'),
+		path: resolve('dist'),
 		filename: '[name].js',
 		publicPath: '/'
 	},

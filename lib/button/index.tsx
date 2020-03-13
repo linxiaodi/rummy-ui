@@ -9,7 +9,7 @@ export enum ButtonShapes {
 }
 
 const ButtonTypes = tuple('primary', 'success', 'warning', 'error', 'default');
-const ButtonSizes = tuple('large, default', 'small');
+const ButtonSizes = tuple('large', 'middle', 'small');
 
 export type ButtonTypes = (typeof ButtonTypes)[number];
 
@@ -36,7 +36,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
   const { className, ...resetProps } = props;
-  const btnClass = cs('ru-button', props.type && props.type !== 'default' ? `ru-button_${props.type}` : false, className);
+  const btnClass = cs('ru-button', props.size && `ru-button_${props.size}`, className);
   return (
     <button className={btnClass} {...(resetProps as Object)}>{props.children}</button>
   );

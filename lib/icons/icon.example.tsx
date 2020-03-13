@@ -19,7 +19,7 @@ const IconExample = () => {
         }
       </div>
       <Demo title="使用方法" desc="通过设置对应的name属性" path="icons/examples/basic.tsx"/>
-      <Demo title="不通过组件直接使用" desc="通过设置ru-icon ru-icon-[name]来组合成一个icon" path="icons/examples/class.tsx"/>
+      <Demo title="不通过组件直接使用" desc="通过设置ru-icon-[name]来组合成一个icon" path="icons/examples/class.tsx"/>
 
     </div>
   );
