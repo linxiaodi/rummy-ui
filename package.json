@@ -10,7 +10,8 @@
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand",
     "test:watch": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand --watch",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT_DIR=./test-results/jest JEST_JUNIT_OUTPUT_NAME=results.xml jest --config=jest.config.js",
-    "depoly": "sh ./depoly.sh"
+    "depoly": "sh ./depoly.sh",
+    "depoly:docs": "sh ./docs.sh"
   },
   "files": [
     "./dist",
