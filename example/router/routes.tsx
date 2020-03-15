@@ -3,6 +3,7 @@ import DialogExample from '../../lib/dialog/dialog.example';
 import ButtonExample from '../../lib/button/button.example';
 import LayoutExample from '../../lib/layout/layout.example';
 import InputExample from '../../lib/input/input.example'
+import FormExample from '../../lib/form/form.example'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
     path: '/input',
     component: InputExample,
     sidebar: 'Input 输入框'
+  },
+  {
+    path: '/form',
+    component: FormExample,
+    sidebar: 'Form 表单'
   }
 ];
 export default routes;

@@ -12,9 +12,7 @@ const DialogExample = () => {
       <Button type="primary" onClick={() => setVisible(true)}>基本用法</Button>
       <Dialog
         title="对话框"
-        closeOnClickMask={false}
         visible={visible}
-        onCancel={() => setVisible(false)}
         buttons={[<Button onClick={() => setVisible(false)}>取消</Button>, <Button onClick={() => console.log('确定')} type="primary">确定</Button>]}
       >这是基本用法</Dialog>
       <h3>modal 对话框</h3>

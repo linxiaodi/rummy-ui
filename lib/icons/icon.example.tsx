@@ -2,6 +2,7 @@ import React from 'react';
 import { Icon } from 'rummy-ui'
 import { iconList } from 'rummy-ui/icons/index'
 import Demo from '../../example/demo'
+import Table from '../../example/table'
 
 const IconExample = () => {
   return (
@@ -20,7 +21,10 @@ const IconExample = () => {
       </div>
       <Demo title="使用方法" desc="通过设置对应的name属性" path="icons/examples/basic.tsx"/>
       <Demo title="不通过组件直接使用" desc="通过设置ru-icon-[name]来组合成一个icon" path="icons/examples/class.tsx"/>
-
+      <h3>API</h3>
+      <Table title="Icon attribute" source={[
+        ['name', '图标的名称', '类型', '', '']
+      ]}/>
     </div>
   );
 };

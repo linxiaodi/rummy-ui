@@ -6,11 +6,12 @@ import { setBodyOverflow } from '../_util/dom';
 import { Button, Icon } from '..';
 import './index.scss';
 import { scopeHelper } from '../_util/helpers';
+import { CSSTransition } from 'react-transition-group';
 
 const scope = scopeHelper('ru-dialog');
 
 interface DialogProps {
-  visible?: Boolean,
+  visible: Boolean,
   title?: string | React.ReactNode,
   className?: string,
   children?: string | React.ReactNode,
@@ -80,20 +81,20 @@ const Dialog: DialogType = (props) => {
   const result = (
     <Fragment>
       <div onClick={onMaskClick} className={wrapperClass}/>
-      <div className={dialogClass}>
-        <div className={scope('header')}>
-          <div className={scope('header__title')}>{title}</div>
-          <Icon onClick={onCancel} className={scope('close')} name="close"/>
+        <div className={dialogClass}>
+          <div className={scope('header')}>
+            <div className={scope('header__title')}>{title}</div>
+            <Icon onClick={onCancel} className={scope('close')} name="close"/>
+          </div>
+          <div className={scope('body')}>
+            {props.children}
+          </div>
+          {
+            dialogFooter && <div className={scope('footer')}>
+              {dialogFooter}
+            </div>
+          }
         </div>
-        <div className={scope('body')}>
-          {props.children}
-        </div>
-        {
-          dialogFooter && <div className={scope('footer')}>
-            {dialogFooter}
-					</div>
-        }
-      </div>
     </Fragment>
   );
   // 把dialog放在最外层

@@ -1,0 +1,23 @@
+.ru-form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ru-form-item__label {
+  font-size: 14px;
+  margin-right: 10px;
+  text-align: right;
+  width: 100px;
+  position: relative;
+}
+
+.ru-form-item__label-require::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: $tip;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+}

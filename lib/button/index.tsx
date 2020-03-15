@@ -36,7 +36,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Button: React.FunctionComponent<ButtonProps> = (props) => {
   const { className, ...resetProps } = props;
-  const btnClass = cs('ru-button', props.size && `ru-button_${props.size}`, className);
+  const btnClass = cs('ru-button', `ru-button_${props.type}`, className);
   return (
     <button className={btnClass} {...(resetProps as Object)}>{props.children}</button>
   );

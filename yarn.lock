@@ -7088,7 +7088,7 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.10.2:
 
 react-transition-group@^4.3.0:
   version "4.3.0"
-  resolved "https://registry.npm.taobao.org/react-transition-group/download/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"
+  resolved "http://registry.npm.souche-inc.com/react-transition-group/download/react-transition-group-4.3.0.tgz#fea832e386cf8796c58b61874a3319704f5ce683"
   integrity sha1-/qgy44bPh5bFi2GHSjMZcE9c5oM=
   dependencies:
     "@babel/runtime" "^7.5.5"

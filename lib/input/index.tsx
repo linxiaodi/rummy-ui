@@ -5,8 +5,8 @@ import './index.scss';
 interface InputProps extends HTMLAttributes<HTMLInputElement>{
   size?: 'sm' | 'md' | 'lg',
   className?: string,
-  type?: 'text' | 'password',
   placeholder?: string,
+  type?: string,
   disabled?: boolean,
   onChange?: React.ChangeEventHandler<HTMLInputElement>,
   onBlur?: React.ChangeEventHandler<HTMLInputElement>,
@@ -20,9 +20,12 @@ const sizeClassMap: { [index: string]: string } = {
 
 const Input: React.FunctionComponent<InputProps> = (props) => {
   const { className, size, ...rest } = props;
+  const [value, setValue] = useState(props.value || '');
   const sizeClass = size ? sizeClassMap[size] : null;
+  const onChange = () => {
+  }
   return (
-    <input className={cs('ru-input', className, sizeClass, rest.disabled ? 'ru-input-disabled' : false)} {...rest}/>
+    <input className={cs('ru-input', className, sizeClass, rest.disabled ? 'ru-input-disabled' : false)} value={value} {...rest}/>
   );
 };
 

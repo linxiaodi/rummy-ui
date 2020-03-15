@@ -6,7 +6,7 @@ import cs from 'classnames';
 
 interface DemoProps {
   code?: string,
-  path?: string,
+  path: string,
   title?: string,
   desc?: string
 }

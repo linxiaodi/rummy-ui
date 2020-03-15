@@ -103,6 +103,7 @@ html, body {
   padding: 0 20px;
   font-size: 14px;
   border-right: 1px solid $border-color;
+  flex-shrink: 0;
   .sider-link {
     display: block;
     color: inherit;
@@ -172,4 +173,9 @@ html, body {
 
 .icon-example [class^=ru-icon] {
   color: #8492a6;
+}
+
+// form
+.w-330 {
+  width: 330px;
 }

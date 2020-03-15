@@ -9,3 +9,69 @@
 .hide {
   display: none;
 }
+
+// animation
+.ru-zoom-appear,
+.ru-zoom-exit {
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+
+.ru-zoom-appear.ru-zoom-appear-active {
+  animation: 300ms ease-in ru-ani-zoomin;
+}
+
+.ru-zoom-exit.ru-zoom-exit-active {
+  animation: 300ms ease-out ru-ani-zoomout;
+}
+
+@keyframes ru-ani-zoomin {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ru-ani-zoomout {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes ru-ani-fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ru-ani-fadeout {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ru-ani-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
