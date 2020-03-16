@@ -19,7 +19,7 @@ interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
 interface FormItemProps {
   prop?: string,
   label?: string,
-  children: React.ReactNode | React.ReactElement[]
+  children: React.ReactElement | React.ReactElement[]
 }
 
 interface FormItem extends React.FunctionComponent<FormItemProps> {
@@ -79,7 +79,7 @@ const FormItem: React.FunctionComponent<FormItemProps> = (props) => {
   console.log(prop && rules[prop] && rules[prop].require);
   return <div className="ru-form-item">
     <label className={cs('ru-form-item__label', { 'ru-form-item__label-require': prop && rules[prop] && rules[prop].require })}>{props.label}</label>
-    {props.children}
+    {Array.isArray(props.children) ? props.children : React.createElement(props.children.type, {})}
   </div>
 }
 
