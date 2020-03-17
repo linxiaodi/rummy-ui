@@ -23,6 +23,7 @@ export const deepClone = <T = pureObject>(target: T):any => {
     if (Array.isArray(target)) {
       return target.reduce((collection, key) => {
         collection[key] = deepClone(target[key])
+        return collection
       }, [])
     } else if (Object.prototype.toString.call(target) === '[object Object]') {
       return Object.keys(target).reduce((collection: pureObject, key: string) => {

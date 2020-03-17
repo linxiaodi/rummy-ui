@@ -14,7 +14,7 @@ const rules = {
 }
 
 const App = () => {
-  const [form, setForm] = useState({ username: '', password: '' })
+  const [form, setForm] = useState({ username: '1', password: '11' })
 
   const setUsername = (val: string) => {
     console.log(val);
@@ -27,12 +27,12 @@ const App = () => {
   }
 
   return (
-    <Form model={form} rules={rules}>
+    <Form initialValue={form} rules={rules}>
       <Form.Item prop="username" label="账号">
-        <Input className="w-330" value={form.username as string} onChange={(e) => setUsername(e.target.value)}/>
+        <Input className="w-330"/>
       </Form.Item>
       <Form.Item prop="password" label="密码">
-        <Input className="w-330" type="current-password" value={form.password as string} onChange={(e) => setPassword(e.target.value)}/>
+        <Input className="w-330" type="password"/>
       </Form.Item>
       <Form.Item>
         <Button>重置</Button>

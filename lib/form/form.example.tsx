@@ -10,7 +10,7 @@ const FormExample = () => {
       <Demo title="基础使用" desc="" path="form/examples/basic"/>
       <h3>API</h3>
       <Table title="Form Attributes" source={[
-        ['model', '绑定的data表单对象', 'object', '', ''],
+        ['defaultValue', '表单的默认value', 'object', '', ''],
         ['rules', '表单校验规则', 'object', '', '']
       ]}/>
 

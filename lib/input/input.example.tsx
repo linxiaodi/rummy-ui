@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from 'rummy-ui'
+import Table from '../../example/table'
 
 const InputExample = () => {
   const [val1, setVal1] = useState('hello world')
@@ -19,6 +20,19 @@ const InputExample = () => {
       </div>
       <h3>Disabled</h3>
       <Input disabled/>
+      <h3>API</h3>
+      <Table
+        title="Input Attributes"
+        source={[
+          ['value', 'input的值', 'string', '非必选', '\'\'']
+        ]}/>
+      <Table
+        title="Input Event"
+        type="event"
+        source={[
+          ['onChange', '当input改变时回传', '(v:string)=>{}']
+        ]}
+      />
     </div>
   );
 };

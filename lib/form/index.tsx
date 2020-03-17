@@ -2,20 +2,21 @@ import * as React from 'react';
 import cs from 'classnames';
 import { useContext, useState } from 'react';
 import './index.scss';
-
-interface FormPropsModel {
-  [propName: string]: any;
-}
+import { pureObject } from '../_util/type'
+import { deepClone } from '../_util/helpers'
 
 interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement[] | React.ReactElement,
-  model: FormPropsModel,
+  initialValue?: pureObject,
   footer?:  React.ReactElement,
   rules: {
     [propName: string]: any;
   }
 }
 
+/**
+ * 如果没有prop 则视为普通仅仅是为了装饰用的
+ * */
 interface FormItemProps {
   prop?: string,
   label?: string,
@@ -39,14 +40,13 @@ interface CompoundedComponent extends React.ForwardRefExoticComponent<FormProps>
 //     shape: '',
 // }
 
-export const FormContext = React.createContext<any>(null)
+export const FormContext = React.createContext<pureObject>({})
 
 const Form = React.forwardRef<{}, FormProps>((props, ref) => {
-  const { model, rules } = props;
+  const { initialValue, rules } = props;
+  let [model, setModel] = useState(deepClone(props.initialValue))
 
-  // const [fields, setFields] = useState([]);
-
-  return <FormContext.Provider value={{ model, rules }}>
+  return <FormContext.Provider value={{ model, rules, setModel }}>
     <form className={cs(props.className, 'ru-form')}>
       {props.children}
       {props.footer}
@@ -55,31 +55,23 @@ const Form = React.forwardRef<{}, FormProps>((props, ref) => {
 }) as CompoundedComponent;
 
 const FormItem: React.FunctionComponent<FormItemProps> = (props) => {
-  const { prop } = props;
-  const { model, rules } = useContext(FormContext)
-  // 如果props没有包含value 则视为自动绑定
-  // const isAutoBind = 'value' in children.props;
-  // let ele;
-  // if (isAutoBind) {
-  //   const [value, setValue] = useState((prop && model[prop]) || '')
-  //   ele = React.cloneElement(children, {
-  //     value,
-  //     onChange: (e: any) => {
-  //       if (e instanceof window.Event) {
-  //         // @ts-ignore
-  //         setValue(e.target.value)
-  //       } else {
-  //         setValue(e)
-  //       }
-  //     }
-  //   })
-  // } else {
-  //   ele = children
-  // }
-  console.log(prop && rules[prop] && rules[prop].require);
+  const { prop = '', children } = props;
+  const { rules, model, setModel } = useContext(FormContext);
+  let value = model[prop] || '';
+  let setValue = (v: any) => {
+    console.log(prop, model[prop]);
+    if (prop !== undefined && prop !== null) {;
+      setModel({ ...model, [prop]: v })
+    }
+  }
+
   return <div className="ru-form-item">
     <label className={cs('ru-form-item__label', { 'ru-form-item__label-require': prop && rules[prop] && rules[prop].require })}>{props.label}</label>
-    {Array.isArray(props.children) ? props.children : React.createElement(props.children.type, {})}
+    {Array.isArray(children) || !prop ? children : React.createElement(children.type, {
+      ...children.props,
+      value,
+      onChange: (v: any) => setValue(v)
+    })}
   </div>
 }
 
