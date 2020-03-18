@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cs from 'classnames';
-import { useContext, useState } from 'react';
+import { useContext, useImperativeHandle, useState } from 'react';
 import './index.scss';
 import { pureObject } from '../_util/type'
 import { deepClone } from '../_util/helpers'
@@ -11,7 +11,8 @@ interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
   footer?:  React.ReactElement,
   rules: {
     [propName: string]: any;
-  }
+  },
+  ref: React.Ref<null>
 }
 
 /**
@@ -31,6 +32,11 @@ interface CompoundedComponent extends React.ForwardRefExoticComponent<FormProps>
   Item: FormItem
 }
 
+export interface FormRef {
+  model: pureObject,
+  resetModel: () => void
+}
+
 // interface ButtonState {
 //   loading?: boolean
 // }
@@ -42,9 +48,16 @@ interface CompoundedComponent extends React.ForwardRefExoticComponent<FormProps>
 
 export const FormContext = React.createContext<pureObject>({})
 
-const Form = React.forwardRef<{}, FormProps>((props, ref) => {
+const Form = React.forwardRef<FormRef, FormProps>((props, ref) => {
   const { initialValue, rules } = props;
   let [model, setModel] = useState(deepClone(props.initialValue))
+
+  useImperativeHandle(ref, () => {
+    return {
+      model,
+      resetModel: () => setModel(deepClone(props.initialValue))
+    }
+  })
 
   return <FormContext.Provider value={{ model, rules, setModel }}>
     <form className={cs(props.className, 'ru-form')}>

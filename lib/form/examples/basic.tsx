@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Form, Input, Button } from 'rummy-ui'
+import { FormRef } from 'rummy-ui/form/index'
 
 const Item = Form.Item
 
@@ -14,20 +15,14 @@ const rules = {
 }
 
 const App = () => {
-  const [form, setForm] = useState({ username: '1', password: '11' })
-
-  const setUsername = (val: string) => {
-    console.log(val);
-    setForm({ ...form, username: val })
-  }
-
-  const setPassword = (val: string) => {
-    console.log(val);
-    setForm({ ...form, password: val })
+  const form = useRef<any>(null)
+  const initialVal = { username: '1', password: '11' }
+  const onSubmit = () => {
+    console.log(form.current.model);
   }
 
   return (
-    <Form initialValue={form} rules={rules}>
+    <Form ref={form} initialValue={initialVal} rules={rules}>
       <Form.Item prop="username" label="账号">
         <Input className="w-330"/>
       </Form.Item>
@@ -35,8 +30,8 @@ const App = () => {
         <Input className="w-330" type="password"/>
       </Form.Item>
       <Form.Item>
-        <Button>重置</Button>
-        <Button type="primary">提交</Button>
+        <Button onClick={() => form.current.resetModel()}>重置</Button>
+        <Button onClick={onSubmit} type="primary">提交</Button>
       </Form.Item>
     </Form>
   );
