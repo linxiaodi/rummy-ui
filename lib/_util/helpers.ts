@@ -36,3 +36,10 @@ export const deepClone = <T = pureObject>(target: T):any => {
   }
 }
 
+export const isNeil = (value: any) => {
+  if (value === null || value === undefined) {
+    return true
+  }
+  return false
+}
+

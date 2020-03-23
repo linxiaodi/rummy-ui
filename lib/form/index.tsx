@@ -8,7 +8,6 @@ import { deepClone } from '../_util/helpers'
 interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement[] | React.ReactElement,
   initialValue?: pureObject,
-  footer?:  React.ReactElement,
   rules: {
     [propName: string]: any;
   },
@@ -62,7 +61,6 @@ const Form = React.forwardRef<FormRef, FormProps>((props, ref) => {
   return <FormContext.Provider value={{ model, rules, setModel }}>
     <form className={cs(props.className, 'ru-form')}>
       {props.children}
-      {props.footer}
     </form>
   </FormContext.Provider>;
 }) as CompoundedComponent;

@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import Highlight, {defaultProps} from "prism-react-renderer";
+import theme from 'prism-react-renderer/themes/dracula';
 import cs from 'classnames';
 // import c from '../lib/button/button.example'
 
@@ -18,7 +19,7 @@ const Demo:React.FunctionComponent<DemoProps> = (props) => {
   // 加载Loader过后的代码
   const Component = require(`../lib/${props.path}`).default
   const codeSource = (
-    <Highlight {...defaultProps} code={code} language="jsx">
+    <Highlight {...defaultProps} theme={theme} code={code} language="jsx">
       {({className, style, tokens, getLineProps, getTokenProps}) => (
         <pre className={className} style={style}>
               {tokens.map((line, i) => (
