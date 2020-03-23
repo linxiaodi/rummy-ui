@@ -8,7 +8,7 @@ let noop: CustomValidator
 
 required = (value: any, rule: RuleItem, cb) => {
   if (value === undefined || value === 'null' || value === '') {
-    return cb(rule.message)
+    return setTimeout(() => cb(rule.message), 8000)
   }
   return cb()
 }
@@ -27,7 +27,7 @@ maxLimit = (value: any, rule: RuleItem, cb) => {
 }
 
 minLimit = (value: any, rule: RuleItem, cb) => {
-  let n = rule.maxLen
+  let n = rule.minLen
   let message = rule.message
   if (n === undefined) return cb(message);
   if (typeof value === 'string') {

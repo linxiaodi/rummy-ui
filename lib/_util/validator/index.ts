@@ -91,48 +91,51 @@ class Validator {
   }
 
   start(source: Source) {
+    let promiseArr: Promise<any>[] = [];
+    Object.keys(this.rules).forEach((key) => {
+      const rules = this.rules[key] as RuleItem[];
+      const value = source[key];
+      const p = this.executeEach(rules, value, key);
+      promiseArr.push(p);
+    });
+    return this.utilFinish(promiseArr);
+  }
+
+  executeEach(chain: RuleItem[], value: any, key: string): Promise<ErrorMsg | undefined> {
     return new Promise((resolve, reject) => {
-      let promiseArr: Promise<any>[] = []
-      const errorCollection:ErrorMsg = {}
-      Object.keys(this.rules).forEach((key) => {
-        const rules = this.rules[key] as RuleItem[]
-        const value = source[key]
-        const p = new Promise((res, rej) => {
-          this.executeEach(rules, value, (error) => {
+      const step = (index: number) => {
+        if (index === chain.length) {
+          resolve()
+        } else {
+          const validator = chain[index].validator as CustomValidator
+          validator.call(undefined, value, chain[index], (error: string) => {
             if (error) {
-              Object.assign(errorCollection, { [key]: error })
-              rej()
+              reject({ [key]: error })
             } else {
-              res()
+              step(index + 1)
             }
           })
-        })
-        promiseArr.push(p)
-      })
-      Promise.all(promiseArr).then(resolve, (errors: ErrorMsg[]) => {
-        console.log(errorCollection)
-        reject(errorCollection)
-      })
+        }
+      }
+      step(0)
     })
   }
 
-  executeEach(chain: RuleItem[], value: any, callback: (err?: string) => any) {
-    const step = (index: number) => {
-      if (index === chain.length) {
-        callback()
-      } else {
-        const validator = chain[index].validator as CustomValidator
-        validator.call(undefined, value, chain[index], (error: string) => {
-          if (error) {
-            callback(error)
-          } else {
-            step(index + 1)
+  utilFinish(promiseCollection: Promise<any>[]): Promise<ErrorMsg | undefined> {
+    let count = 0
+    let errors: ErrorMsg = {}
+    return new Promise((resolve, reject) => {
+      promiseCollection.forEach((p) => {
+        p.catch((e: ErrorMsg) => {
+          Object.assign(errors, e)
+        }).finally(() => {
+          count += 1;
+          if (count === promiseCollection.length) {
+            Object.values(errors).length > 0 ? reject(errors) : resolve()
           }
         })
-        step(index + 1)
-      }
-    }
-    step(0)
+      })
+    })
   }
 
   /**
