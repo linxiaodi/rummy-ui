@@ -8,7 +8,7 @@ let noop: CustomValidator
 
 required = (value: any, rule: RuleItem, cb) => {
   if (value === undefined || value === 'null' || value === '') {
-    return setTimeout(() => cb(rule.message), 8000)
+    return cb(rule.message)
   }
   return cb()
 }

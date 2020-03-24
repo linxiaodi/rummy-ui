@@ -51,15 +51,6 @@ class Validator {
     this.define();
     this.addRules();
   }
-  validate(fieldName?: string) {
-    const errorMsg: ErrorMsg = {}
-    // 校验全部
-    if (fieldName) {
-      Object.keys(this.rules).forEach((key) => {
-        const ruleItem = this.rules[key]
-      })
-    }
-  }
 
   // transform to rules
   define() {
@@ -121,6 +112,13 @@ class Validator {
     })
   }
 
+  /**
+   * 执行所有promise 直到拿到所有结果
+   * 为什么不用all 或者race
+   * all 一旦中间一个reject 则弹出所有错误
+   * race 一旦resolve 则弹出所有
+   * 明显不符合需求 我们需要的是所有promise都执行不管错误还是正确 直到status 脱离pending之后弹出
+   * */
   utilFinish(promiseCollection: Promise<any>[]): Promise<ErrorMsg | undefined> {
     let count = 0
     let errors: ErrorMsg = {}
@@ -137,48 +135,6 @@ class Validator {
       })
     })
   }
-
-  /**
-   * {
-   *   require: true
-   *   maxLen: 6,
-   *   minLen: 5
-   * }
-   * 转换成
-   * [require(value), maxLem(value, 6), minLen(value, 5)]
-
-  addRuleExecutor(ruleItem: RuleItem) {
-    let collection = []
-    if (ruleItem.require) {
-      collection.push((value: any) => {
-        return required(value)
-      })
-    }
-    if ('maxLen' in ruleItem) {
-      collection.push((value: any) => {
-        return maxLimit(value, ruleItem.maxLen)
-      })
-    }
-    if ('minLen' in ruleItem) {
-      collection.push((value: any) => {
-        return minLimit(value, ruleItem.minLen as number)
-      })
-    }
-    return collection
-  }
-
-  // 执行结果如果成功则返回message: 'string'
-  executor(value: any, collection: ((value: any) => boolean)[], ruleItem: RuleItem) {
-    // 执行器的结果
-    const resFlag: boolean = collection.every((func) => {
-      return func.call(undefined, value)
-    })
-    if (resFlag) {
-      return ruleItem.message || '失败'
-    }
-    return null
-  }
-   * */
 }
 
 export default Validator

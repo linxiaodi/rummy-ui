@@ -1,9 +1,10 @@
 import * as React from 'react';
 import cs from 'classnames';
-import { useContext, useImperativeHandle, useState } from 'react';
+import { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import './index.scss';
 import { pureObject } from '../_util/type'
 import { deepClone } from '../_util/helpers'
+import Validator from '../_util/validator/index'
 
 interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement[] | React.ReactElement,
@@ -33,7 +34,12 @@ interface CompoundedComponent extends React.ForwardRefExoticComponent<FormProps>
 
 export interface FormRef {
   model: pureObject,
-  resetModel: () => void
+  resetFields: () => void,
+  validateFields: (cb?: Callback) => any
+}
+
+interface Callback {
+  (error?: string, model?: pureObject): void
 }
 
 // interface ButtonState {
@@ -49,40 +55,69 @@ export const FormContext = React.createContext<pureObject>({})
 
 const Form = React.forwardRef<FormRef, FormProps>((props, ref) => {
   const { initialValue, rules } = props;
-  let [model, setModel] = useState(deepClone(props.initialValue))
+  const [errors, setErrors] = useState({})
+  const validator = useRef<Validator>(new Validator(rules))
+  let [model, setModel] = useState(JSON.parse(JSON.stringify(initialValue)))
 
   useImperativeHandle(ref, () => {
     return {
       model,
-      resetModel: () => setModel(deepClone(props.initialValue))
+      resetFields: () => {
+        setModel(deepClone(props.initialValue))
+        setErrors({})
+      },
+      validateFields: (cb?: Callback) => {
+        return validator.current.start(model).then(() => {
+          cb && cb(undefined, model)
+          setErrors({})
+          return model;
+        }).catch((err) => {
+          setErrors(err)
+          const oldestMsg = Object.values(err)[0] as string;
+          cb && cb(oldestMsg, model)
+          return Promise.reject(oldestMsg)
+        })
+      }
     }
   })
 
-  return <FormContext.Provider value={{ model, rules, setModel }}>
-    <form className={cs(props.className, 'ru-form')}>
+  return <FormContext.Provider value={{ model, rules, errors, setModel }}>
+    <div className={cs(props.className, 'ru-form')}>
       {props.children}
-    </form>
+    </div>
   </FormContext.Provider>;
 }) as CompoundedComponent;
 
+Form.defaultProps = {
+  rules: {},
+  initialValue: {}
+}
+
 const FormItem: React.FunctionComponent<FormItemProps> = (props) => {
+  const [error, setError] = useState('')
   const { prop = '', children } = props;
-  const { rules, model, setModel } = useContext(FormContext);
+  const { rules, model, setModel, errors } = useContext(FormContext);
   let value = model[prop] || '';
   let setValue = (v: any) => {
-    console.log(prop, model[prop]);
     if (prop !== undefined && prop !== null) {;
       setModel({ ...model, [prop]: v })
     }
   }
 
+  useEffect(() => {
+    setError(errors[prop] || '')
+  }, [errors])
+
   return <div className="ru-form-item">
     <label className={cs('ru-form-item__label', { 'ru-form-item__label-require': prop && rules[prop] && rules[prop].require })}>{props.label}</label>
-    {Array.isArray(children) || !prop ? children : React.createElement(children.type, {
-      ...children.props,
-      value,
-      onChange: (v: any) => setValue(v)
-    })}
+    <div className="ru-form-item__content">
+      {Array.isArray(children) || !prop ? children : React.createElement(children.type, {
+        ...children.props,
+        value,
+        onChange: (v: any) => setValue(v)
+      })}
+      {error && <div className="ru-form-item__error">{error}</div>}
+    </div>
   </div>
 }
 

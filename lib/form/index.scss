@@ -1,7 +1,7 @@
 .ru-form-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .ru-form-item__label {
@@ -20,4 +20,17 @@
   font-family: SimSun, sans-serif;
   line-height: 1;
   content: '*';
+}
+
+.ru-form-item__content {
+  position: relative;
+}
+
+.ru-form-item__error {
+  color: $tip;
+  font-size: 12px;
+  position: absolute;
+  line-height: 1;
+  bottom: -12 - 6px;
+  left: 0;
 }

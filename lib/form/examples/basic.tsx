@@ -30,7 +30,7 @@ const App = () => {
         <Input className="w-330" type="password"/>
       </Form.Item>
       <Form.Item>
-        <Button onClick={() => form.current.resetModel()}>重置</Button>
+        <Button onClick={() => form.current.resetFields()}>重置</Button>
         <Button onClick={onSubmit} type="primary">提交</Button>
       </Form.Item>
     </Form>
