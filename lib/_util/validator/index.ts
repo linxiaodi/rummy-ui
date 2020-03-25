@@ -47,7 +47,7 @@ type LimitType = 'string' | 'number'
 class Validator {
   rules: Rules
   constructor(rules: Rules) {
-    this.rules = JSON.parse(JSON.stringify(rules));
+    this.rules = deepClone(rules);
     this.define();
     this.addRules();
   }
@@ -65,15 +65,16 @@ class Validator {
     Object.keys(this.rules).forEach((key) => {
       const rules = this.rules[key]
       for (let item of rules as RuleItem[]) {
+        if (typeof item.validator === 'function') continue;
         if (item.require) {
           item.validator = required
           continue;
         }
-        if (item.maxLen) {
+        if (item.max) {
           item.validator = maxLimit
           continue
         }
-        if (item.minLen) {
+        if (item.min) {
           item.validator = minLimit
           continue
         }

@@ -21,8 +21,8 @@ export const checkType = (target: any):PrimitiveType => {
 export const deepClone = <T = pureObject>(target: T):any => {
   if (typeof target === 'object' && target !== null) {
     if (Array.isArray(target)) {
-      return target.reduce((collection, key) => {
-        collection[key] = deepClone(target[key])
+      return target.reduce((collection, item) => {
+        collection.push(deepClone(item))
         return collection
       }, [])
     } else if (Object.prototype.toString.call(target) === '[object Object]') {

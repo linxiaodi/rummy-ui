@@ -8,7 +8,7 @@ const App = () => {
   }
   const rules = {
     name: { require: true, message: '请输入名字' },
-    hobby: { minLen: 10, message: '爱好不能少于10个字' }
+    hobby: { max: 10, message: '爱好不能多于10个字' }
   }
   const form = useRef<any>(null)
 

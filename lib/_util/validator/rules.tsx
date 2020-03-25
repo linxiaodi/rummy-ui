@@ -14,7 +14,7 @@ required = (value: any, rule: RuleItem, cb) => {
 }
 
 maxLimit = (value: any, rule: RuleItem, cb) => {
-  let n = rule.maxLen
+  let n = rule.max
   let message = rule.message
   if (n === undefined) return cb(message);
   if (typeof value === 'string') {
@@ -27,7 +27,7 @@ maxLimit = (value: any, rule: RuleItem, cb) => {
 }
 
 minLimit = (value: any, rule: RuleItem, cb) => {
-  let n = rule.minLen
+  let n = rule.min
   let message = rule.message
   if (n === undefined) return cb(message);
   if (typeof value === 'string') {

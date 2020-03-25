@@ -108,8 +108,21 @@ const FormItem: React.FunctionComponent<FormItemProps> = (props) => {
     setError(errors[prop] || '')
   }, [errors])
 
+  // 是否有require标识符
+  const hasRequireFix = () => {
+    let flag
+    const rule = prop && rules[prop];
+    if (!rule) return false
+    if (Array.isArray(rule)) {
+      flag = rule.find(n => n.require)
+    } else {
+      flag = rule.require
+    }
+    return flag
+  }
+
   return <div className="ru-form-item">
-    <label className={cs('ru-form-item__label', { 'ru-form-item__label-require': prop && rules[prop] && rules[prop].require })}>{props.label}</label>
+    <label className={cs('ru-form-item__label', { 'ru-form-item__label-require': hasRequireFix() })}>{props.label}</label>
     <div className="ru-form-item__content">
       {Array.isArray(children) || !prop ? children : React.createElement(children.type, {
         ...children.props,

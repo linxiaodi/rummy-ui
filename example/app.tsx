@@ -14,7 +14,8 @@ let App = () => (<HashRouter>
 		<Layout className="box">
       <Header className="ru-example-header">
         <Link className="logo" to="/">
-          <img src="https://i.loli.net/2019/12/26/dfWhG1byne8jNat.png" alt=""/>
+          {/*<img src="https://i.loli.net/2019/12/26/dfWhG1byne8jNat.png" alt=""/>*/}
+          <img src="//img.souche.com/f2e/b393078e6fde1cabeabb2707b15f4324.png" alt=""/>
           <div className="name">Rummy UI</div>
         </Link>
         <div className="header-side">
