@@ -1,10 +1,12 @@
 $scope: 'rummy';
 $main: #85B7D9;
 $text-color: #515a6e;
+
 $primary: #2d8cf0;
 $success: #19be6b;
 $warning: #f90;
 $error: #ed4014;
+
 $default-border: rgba(34,36,38,.15);
 $tip: #ff4d4f;
 
@@ -13,6 +15,9 @@ $disable-text: #5e5e66;
 $disable-border: #bfbfbf;
 
 $mask-bg: rgba(0,0,0,.85);
+
+$shadow-1: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
 @mixin center($dir: row) {
   display: flex;

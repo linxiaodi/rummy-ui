@@ -42,7 +42,7 @@ const Demo:React.FunctionComponent<DemoProps> = (props) => {
         <div className="source">
           <Component/>
         </div>
-        <pre className={cs({ hide: !showCode }, 'code-preview')}>
+        <pre className={cs({ 'ru-hide': !showCode }, 'code-preview')}>
         {codeSource}
       </pre>
         <div onClick={() => setShowCode(!showCode)} className="showCode-btn">

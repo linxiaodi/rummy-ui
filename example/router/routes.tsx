@@ -4,6 +4,8 @@ import ButtonExample from '../../lib/button/button.example';
 import LayoutExample from '../../lib/layout/layout.example';
 import InputExample from '../../lib/input/input.example'
 import FormExample from '../../lib/form/form.example'
+import MessageExample from '../../lib/message/message.example'
+import TransitionExample from '../../lib/transition/Transition.example'
 
 const routes = [
   {
@@ -35,6 +37,16 @@ const routes = [
     path: '/form',
     component: FormExample,
     sidebar: 'Form 表单'
+  },
+  {
+    path: '/message',
+    component: MessageExample,
+    sidebar: 'Message 信息提示'
+  },
+  {
+    path: '/transition',
+    component: TransitionExample,
+    sidebar: 'Transition 动画使用'
   }
 ];
 export default routes;

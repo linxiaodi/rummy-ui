@@ -1,0 +1,33 @@
+.ru-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: $shadow-1;
+  pointer-events: all;
+
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  color: $text-color;
+  &-icon {
+    margin-right: 10px;
+  }
+  &-icon_info {
+    color: $primary;
+  }
+  &-icon_success {
+    color: $success;
+  }
+  &-icon_error {
+    color: $error;
+  }
+  &-icon_warning {
+    color: $warning;
+  }
+}
+

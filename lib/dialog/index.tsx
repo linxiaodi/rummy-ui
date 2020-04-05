@@ -42,8 +42,8 @@ interface DialogType extends React.FunctionComponent<DialogProps> {
 
 const Dialog: DialogType = (props) => {
   const { title, visible, buttons, closeOnClickMask } = props;
-  const wrapperClass = cs(props.className, scope('mask'), { hide: !visible });
-  const dialogClass = cs({ hide: !visible }, scope());
+  const wrapperClass = cs(props.className, scope('mask'), { 'ru-hide': !visible });
+  const dialogClass = cs({ 'ru-hide': !visible }, scope());
   if (visible) {
     setBodyOverflow('hidden');
   } else {

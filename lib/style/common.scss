@@ -1,3 +1,4 @@
+
 [class^=ru-] {
   box-sizing: border-box;
 }
@@ -6,22 +7,22 @@
   box-sizing: border-box;
 }
 
-.hide {
-  display: none;
+.ru-hide {
+  display: none !important;
 }
 
 // animation
-.ru-zoom-appear,
+.ru-zoom-enter,
 .ru-zoom-exit {
   animation-fill-mode: both;
   animation-play-state: paused;
 }
 
-.ru-zoom-appear.ru-zoom-appear-active {
+.ru-zoom-enter, .ru-zoom-enter-active {
   animation: 300ms ease-in ru-ani-zoomin;
 }
 
-.ru-zoom-exit.ru-zoom-exit-active {
+.ru-zoom-exit, .ru-zoom-exit-active {
   animation: 300ms ease-out ru-ani-zoomout;
 }
 
