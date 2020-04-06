@@ -4,12 +4,12 @@
 
 动画重要的`timing`
 
-- enter
-- enterActive
-- enterDone
-- exit
-- exitActive
-- exitDone 
+- enter 只在第一帧出现
+- enterActive 存在于整个动画过程 动画结束后移除
+- enterDone 存在于第一帧之后的动画过程 动画结束后移除
+- exit 只在第一帧出现
+- exitActive 存在于整个动画过程 动画结束后移除
+- exitDone 存在于第一帧之后的动画过程 动画结束后移除
 
 对应的比如`fade`,会依次触发：`fade-enter`, `fade-enter-active`, `fade-enter-done`, `fade-exit`, `fade-exit-active`, `fade-exit-done`。
 
@@ -18,8 +18,21 @@ API:
 - classNames。string | object
 - in。boolean
 
+classNames如果是string 比如fade，相当于声明了一系列classNames如下：
+```js
+{
+	enter: fade-enter
+	enterActive: fade-enter-active
+	enterDone: fade-enter-done
+	exit: fade-exit
+	exitActive: fade-exit-active
+	exitDone: fade-exit-done
+}
+```
+
+
 钩子函数：
-- onEnter
-- onEntered
-- onExit
-- onExited
+- onEnter 当出现的动画开始时
+- onEntered 当出现的动画结束之后
+- onExit 当动画结束时
+- onExited 当动画结束之后
