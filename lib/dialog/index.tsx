@@ -6,7 +6,6 @@ import { setBodyOverflow } from '../_util/dom';
 import { Button, Icon } from '..';
 import './index.scss';
 import { scopeHelper } from '../_util/helpers';
-import { CSSTransition } from 'react-transition-group';
 
 const scope = scopeHelper('ru-dialog');
 
