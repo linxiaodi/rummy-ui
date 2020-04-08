@@ -1,3 +1,11 @@
+/**
+ * @file
+ * 作为每个用例的布局
+ * 包含：
+ * title 标题。即可以主动传递props也可以直接从示例组件的title属性读取
+ * desc 描述。即可以主动从props传递 也可以从示例组件的desc属性读取
+ * path 路径，当前目录限定为lib文件夹
+ * */
 import React, { useState, Fragment } from 'react';
 import Highlight, {defaultProps} from "prism-react-renderer";
 import theme from 'prism-react-renderer/themes/dracula';
@@ -36,8 +44,8 @@ const Demo:React.FunctionComponent<DemoProps> = (props) => {
 
   return (
     <Fragment>
-      {props.title && <h3>{props.title}</h3>}
-      {props.desc && <p>{props.desc}</p>}
+      {(props.title || Component.title) && <h3>{props.title || Component.title}</h3>}
+      {(props.desc || Component.desc) && <p>{props.desc || Component.desc}</p>}
       <div className="demo-container">
         <div className="source">
           <Component/>

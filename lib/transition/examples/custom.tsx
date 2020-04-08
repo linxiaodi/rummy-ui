@@ -32,4 +32,7 @@ const App = () => {
   );
 };
 
+App.desc = '可以指定classNames为一个对象，对象必须要包含enterActive和exitActive2个key，其余的class可以视情况使用。'
+App.title = '使用自定义classNames'
+
 export default App;
