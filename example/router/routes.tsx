@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/layout',
     component: LayoutExample,
-    sidebar: 'Footer 布局'
+    sidebar: 'Layout 布局'
   },
   {
     path: '/input',

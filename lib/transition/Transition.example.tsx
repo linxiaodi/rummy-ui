@@ -1,16 +1,35 @@
 import React, { useState } from 'react';
-import Transition from './index'
-import { Button } from 'rummy-ui'
+import Demo from '../../example/demo';
+import Table from '../../example/table'
 
 const App = () => {
-  let [show, setShow] = useState(true)
   return (
-    <>
-      <Button type="primary" onClick={() => setShow(!show)} style={{ marginBottom: '100px' }}>切换div</Button>
-      <Transition in={show} classNames="ru-zoom">
-        <div style={{ border: '1px solid #ddd' }}>123456</div>
-      </Transition>
-    </>
+    <div>
+      <h2>Transition 过渡动画</h2>
+      <p>内置的过渡动画组件，只支持CSS属性的过渡动画。</p>
+      <Demo
+        title="基础使用"
+        desc="绑定一个字符串classNames，相当于绑定了一系列的className，比如fade，相当于声明{
+          enter: fade-enter, enterActive: fade-enter-active, enterDone: fade-enter-done,
+          exit: fade-exit, exitActive: fade-exit-active, exitDone: fade-exit-done
+        }"
+        path="transition/examples/basic"/>
+      <Demo
+        title="使用自定义classNames"
+        desc="可以指定classNames为一个对象，对象必须要包含enterActive和exitActive2个key，其余的class可以视情况使用。"
+        path="transition/examples/custom"/>
+
+      <h3>API</h3>
+      <Table
+        title="Transition Attributes"
+        type="attribute"
+        source={[
+          ['in', '控制组件显示隐藏', 'boolean', '必填', '-'],
+          ['classNames', '控制组件的CSS动画，如果声明的是string,会默认为：一系列的classNames', 'string | object', '必填', '-'],
+          ['onEnter', '当组件开始动画时', '() => any', '非必填', 'any'],
+        ]}
+      />
+    </div>
   )
 }
 

@@ -4,9 +4,9 @@ import { Icon } from 'rummy-ui';
 import { tuple } from '../_util/type'
 import ReactDOM from 'react-dom';
 import { useDidMount } from '../_util/hooks/index'
-import { CSSTransition } from 'react-transition-group';
+import Transition  from '../transition';
 
-const MessageType = tuple('info', 'success', 'error', 'warning')
+export const MessageType = tuple('info', 'success', 'error', 'warning')
 
 type MessageType = (typeof MessageType)[number]
 
@@ -34,19 +34,19 @@ const Message: React.FunctionComponent<MessageProps> = (props) => {
   })
 
   const result = (
-    <CSSTransition timeout={400} in={show} classNames="my-node">
+    <Transition classNames="ru-slide-down" in={show}>
       <div className="ru-message">
         <Icon className={cs('ru-message-icon', `ru-message-icon_${type}`)} name={map[type!]}/>
         {children}
       </div>
-    </CSSTransition>
+    </Transition>
   )
-  return ReactDOM.createPortal(result, document.body)
+  return result
 }
 
 Message.defaultProps = {
   type: 'info',
-  duration: 1000
+  duration: 1200
 }
 
 export default Message

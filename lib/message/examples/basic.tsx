@@ -1,10 +1,13 @@
 import React from 'react';
-import Message from '../message'
+import { Button, message } from 'rummy-ui';
 
 const Basic = () => {
+  const handleClick = () => {
+    message.info('基本功能')
+  }
   return (
     <div>
-      <Message type="success">hahah</Message>
+      <Button onClick={handleClick}>基本功能</Button>
     </div>
   );
 };

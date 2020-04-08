@@ -21,12 +21,12 @@ API:
 classNames如果是string 比如fade，相当于声明了一系列classNames如下：
 ```js
 {
-	enter: fade-enter
-	enterActive: fade-enter-active
-	enterDone: fade-enter-done
-	exit: fade-exit
-	exitActive: fade-exit-active
-	exitDone: fade-exit-done
+	enter: 'fade-enter',
+	enterActive: 'fade-enter-active',
+	enterDone: 'fade-enter-done',
+	exit: 'fade-exit',
+	exitActive: 'fade-exit-active',
+	exitDone: 'fade-exit-done'
 }
 ```
 

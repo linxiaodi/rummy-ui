@@ -1,45 +1,19 @@
-.my-node-enter {
+.ru-fade-enter-active.ru-fade-enter {
   opacity: 0;
 }
-.my-node-enter-active {
+.ru-fade-enter-active {
   opacity: 1;
-  transition: opacity 1000ms;
+  transition: opacity .6s;
 }
-.my-node-exit {
+.ru-fade-exit {
   opacity: 1;
 }
-.my-node-exit-active {
+.ru-fade-exit-active {
   opacity: 0;
-  transition: opacity 1000ms;
+  transition: opacity .6s;
 }
 
-.my-node-exit-done {
-  opacity: 0;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 1000ms;
-}
-
-.fade-enter-done {
-  opacity: 1;
-  transition: opacity 1000ms;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-.fade-exit-active {
-  opacity: 0;
-  transition: opacity 1000ms;
-}
-
-.fade-exit-done {
+.ru-fade-exit-done {
   opacity: 0;
 }
 

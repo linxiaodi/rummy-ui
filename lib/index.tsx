@@ -16,5 +16,6 @@ export { default as Button } from './button';
 export { default as Layout } from './layout/index';
 export { default as Input } from './input/index';
 export { default as Form } from './form/index';
-export { default as message } from './message/index'
 export { default as Message } from './message/message'
+export { default as message } from './message/index'
+export { default as Transition } from './transition/index'

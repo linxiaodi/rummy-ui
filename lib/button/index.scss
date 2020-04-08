@@ -1,3 +1,15 @@
+$primary-color: #2d8cf0;
+$primary-color-hover: #57a3f3;
+
+$success-color: #19be6b;
+$success-color-hover: #47cb89;
+
+$warning-color: #f90;
+$warning-color-hover: #ffad33;
+
+$error-color: #ed4014;
+$error-color-hover: #f16643;
+
 .ru-button {
   -webkit-appearance: button;
   display: inline-block;
@@ -18,35 +30,76 @@
   color: $text-color;
   outline: 0;
 
-  &:hover {
-    color: #57a3f3;
-    background-color: #fff;
-    border-color: #57a3f3;
+
+  &_default {
+    &:hover {
+      color: #57a3f3;
+      background-color: #fff;
+      border-color: #57a3f3;
+    }
   }
 
   &:active {
     outline: 0;
   }
 
-  &:focus {
-    color: #40a9ff;
-    border-color: #40a9ff;
-  }
 
   &_primary {
     color: #fff;
-    background-color: $primary;
-    background: $primary;
+    background-color: $primary-color;
+    background: $primary-color;
 
     &:hover {
-      background-color: #57a3f3;
-      border-color: #57a3f3;
+      background-color: $primary-color-hover;
+      border-color: $primary-color-hover;
       color: #ffff;
     }
+  }
 
-    &:focus {
-      color: #fff;
+  &_success {
+    color: #fff;
+    background-color: $success-color;
+    border-color: $success-color;
+    &:hover {
+      background-color: $success-color-hover;
+      border-color: $success-color-hover;
+      color: #ffff;
     }
+  }
+
+  &_warning {
+    color: #fff;
+    background-color: $warning-color;
+    border-color: $warning-color;
+    &:hover {
+      background-color: $warning-color-hover;
+      border-color: $warning-color-hover;
+      color: #ffff;
+    }
+  }
+
+  &_error {
+    color: #fff;
+    background-color: $error-color;
+    border-color: $error-color;
+    &:hover {
+      background-color: $error-color-hover;
+      border-color: $error-color-hover;
+      color: #ffff;
+    }
+  }
+
+  &-sm {
+    height: 24px;
+    padding: 0 7px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  &-lg {
+    height: 40px;
+    padding: 6.4px 15px;
+    font-size: 16px;
   }
 }
 

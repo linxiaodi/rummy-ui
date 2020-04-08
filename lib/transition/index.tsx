@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { useDidMount } from 'rummy-ui/_util/hooks';
 import cs from 'classnames'
 
 // 自定义classNames状态
 interface TransitionClassNames {
-  enter: string,
+  enter?: string,
   enterActive: string,
-  enterDone: string,
-  exit: string,
+  enterDone?: string,
+  exit?: string,
   exitActive: string,
-  exitDone: string
+  exitDone?: string
 }
 
 interface TransitionProps {
@@ -37,10 +37,15 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
     ? getTransitionClass(props.classNames)
     : props.classNames);
   // 不要直接去隐藏元素
-  let [show, setShow] = useState(props.in)
   let [isMount, setIsMount] = useState(false)
 
   let { children } = props
+
+  // before Did Mount
+  // 视图出现之前把元素至为none，防止动画出现闪动
+  useLayoutEffect(() => {
+    (ref.current as HTMLBaseElement).style.display = 'none'
+  }, [])
 
   useDidMount(() => {
     setIsMount(true)
@@ -49,13 +54,11 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
   useEffect(() => {
     // isMount 过滤掉第一次 props.in初始化第一次触发的动作
     // 否则会导致 奇怪的类名和end 事件的不触发
-    if (isMount) {
-      if (props.in) {
-        onVisible()
-        setShow(true)
-      } else {
-        onHide()
-      }
+    if (props.in) {
+      onVisible()
+    } else {
+      // 刚开始就隐藏元素的话就不需要啥动画了
+      isMount && onHide()
     }
   }, [props.in])
 
@@ -66,21 +69,24 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
   const onVisible = () => {
     const childDOM = ref.current as HTMLBaseElement
 
+    childDOM.style.display = ''
     childDOM.addEventListener('transitionend', didEnter)
     childDOM.addEventListener('animationend', didEnter)
 
     let { enter, enterActive, enterDone, exitActive, exitDone } = classNames.current
 
     // 疑问：为什么要多加一帧？
-    requestAnimationFrame(() => {
-      childDOM.classList.add(enter, enterActive)
+    // requestAnimationFrame(() => {
+      childDOM.classList.add(enterActive)
+      enter && childDOM.classList.add(enter)
+
       props.onEnter && props.onEnter()
       // next tick
       requestAnimationFrame(() => {
-        childDOM.classList.remove(enter)
-        childDOM.classList.add(enterDone)
+        enter && childDOM.classList.remove(enter)
+        enterDone && childDOM.classList.add(enterDone)
       })
-    })
+    // })
   }
 
   // on element animation hide
@@ -96,48 +102,48 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
     props.onExit && props.onExit()
 
     requestAnimationFrame(() => {
-      childDOM.classList.add(exit, exitActive)
+      childDOM.classList.add(exitActive)
+      exit && childDOM.classList.add(exit)
     })
 
     // next tick
     requestAnimationFrame(() => {
-      childDOM.classList.remove(exit)
+      exit && childDOM.classList.remove(exit)
       exitDone && childDOM.classList.add(exitDone)
     })
   }
 
   // 动画结束 1.如果有done
-  const didEnter = () => {
+  const didEnter = useCallback(() => {
     const childDOM = ref.current as HTMLBaseElement
     let { enterActive, enterDone } = classNames.current
-    childDOM.classList.remove(enterActive, enterDone)
-    console.log('enter done');
-
+    childDOM.classList.remove(enterActive)
+    enterDone && childDOM.classList.remove(enterDone)
+    
     props.onEntered && props.onEntered()
     childDOM.removeEventListener('transitionend', didEnter);
     childDOM.removeEventListener('animationend', didEnter);
-  }
+  }, [])
 
   // 动画结束
-  const didExit = () => {
+  const didExit = useCallback(() => {
     const childDOM = ref.current as HTMLBaseElement
     let { exit, exitActive, exitDone, enter, enterActive, enterDone } = classNames.current
 
-    console.log('did exit');
     // 下一帧隐藏元素
     requestAnimationFrame(() => {
-      setShow(false)
       props.onExited && props.onExited()
       childDOM.classList.remove(exitActive)
-      childDOM.classList.remove(exitDone)
+      exitDone && childDOM.classList.remove(exitDone)
+      childDOM.style.display = 'none'
     })
     childDOM.removeEventListener('transitionend', didExit);
     childDOM.removeEventListener('animationend', didExit);
-  }
+  }, [])
 
+  // 绑定classNames hide会很奇怪！
   return React.cloneElement(children, Object.assign({
-    ref,
-    className: cs(children.props.className, { 'ru-hide': !show })
+    ref
   }, children.props));
 };
 
