@@ -69,14 +69,24 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
   const onVisible = () => {
     const childDOM = ref.current as HTMLBaseElement
 
-    childDOM.style.display = ''
+    let { enter, enterActive, enterDone, exitActive, exitDone } = classNames.current
+
     childDOM.addEventListener('transitionend', didEnter)
     childDOM.addEventListener('animationend', didEnter)
 
-    let { enter, enterActive, enterDone, exitActive, exitDone } = classNames.current
-
     // 疑问：为什么要多加一帧？
-    // requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      // when hidden transition not end
+      if (childDOM.classList.contains(exitActive)) {
+        childDOM.classList.remove(exitActive);
+        exitDone && childDOM.classList.remove(exitDone);
+
+        childDOM.removeEventListener('transitionend', didExit);
+        childDOM.removeEventListener('animationend', didExit);
+      }
+
+      childDOM.style.display = ''
+
       childDOM.classList.add(enterActive)
       enter && childDOM.classList.add(enter)
 
@@ -86,7 +96,7 @@ const Transition: React.FunctionComponent<TransitionProps> = (props) => {
         enter && childDOM.classList.remove(enter)
         enterDone && childDOM.classList.add(enterDone)
       })
-    // })
+    })
   }
 
   // on element animation hide
