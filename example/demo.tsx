@@ -17,7 +17,8 @@ interface DemoProps {
   code?: string,
   path: string,
   title?: string,
-  desc?: string
+  desc?: string,
+  style?: React.CSSProperties
 }
 
 const Demo:React.FunctionComponent<DemoProps> = (props) => {
@@ -47,7 +48,7 @@ const Demo:React.FunctionComponent<DemoProps> = (props) => {
       {(props.title || Component.title) && <h3>{props.title || Component.title}</h3>}
       {(props.desc || Component.desc) && <p>{props.desc || Component.desc}</p>}
       <div className="demo-container">
-        <div className="source">
+        <div className="source" style={props.style}>
           <Component/>
         </div>
         <pre className={cs({ 'ru-hide': !showCode }, 'code-preview')}>

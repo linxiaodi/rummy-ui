@@ -1,0 +1,18 @@
+$transition: transform 300ms cubic-bezier(.23, 1, .32, 1) 100ms, opacity 300ms cubic-bezier(.23, 1, .32, 1) 100ms;
+
+
+.ru-zoom-in-top-exit-active, .ru-zoom-in-top-enter-active {
+  transition: $transition;
+  transform-origin: center top;
+}
+
+.ru-zoom-in-top-enter-active {
+  opacity: 1;
+  transform: scaleY(1);
+}
+// enter的属性最高
+.ru-zoom-in-top-enter, .ru-zoom-in-top-exit-active {
+  opacity: 0;
+  transform: scaleY(0);
+}
+

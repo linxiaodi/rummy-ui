@@ -9,6 +9,7 @@
 // ReactDOM.render(<App/>, document.querySelector('#app'))
 import './style/common.scss';
 import './style/animation.scss';
+import './style/transition.scss';
 
 export { default as Icon } from './icons';
 export { default as Dialog, modal, alert, confirm } from './dialog';
@@ -19,3 +20,4 @@ export { default as Form } from './form/index';
 export { default as Message } from './message/message'
 export { default as message } from './message/index'
 export { default as Transition } from './transition/index'
+export { default as Select } from './select/';

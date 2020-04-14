@@ -6,6 +6,7 @@ import InputExample from '../../lib/input/input.example'
 import FormExample from '../../lib/form/form.example'
 import MessageExample from '../../lib/message/message.example'
 import TransitionExample from '../../lib/transition/Transition.example'
+import SelectExample from '../../lib/select/select.example'
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     path: '/transition',
     component: TransitionExample,
     sidebar: 'Transition 动画使用'
+  },
+  {
+    path: '/select',
+    component: SelectExample,
+    sidebar: 'Select 选择器'
   }
 ];
 export default routes;

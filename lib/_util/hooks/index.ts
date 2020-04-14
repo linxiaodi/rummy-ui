@@ -25,7 +25,7 @@ export const useDidMount = (onMount: Mount) => {
   return setHandler
 }
 
-export const useUnMount = (onUnMount: Mount) => {
+export const useWillUnmount = (onUnMount: Mount) => {
   const [handler, setHandler] = createHandlerSetter<Mount>(onUnMount)
   useEffect(() => {
     return () => {

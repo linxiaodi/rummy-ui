@@ -1,0 +1,48 @@
+$height: 32px;
+
+.ru-select-wrapper {
+
+}
+
+.ru-select {
+  cursor: pointer;
+  position: relative;
+  &__input {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  &__inner {
+    height: $height;
+    line-height: $height;
+    border: 1px solid $border-grey-color;
+    border-radius: 2px;
+  }
+  &__inner-active {
+    border-color: $primary;
+    box-shadow: $shadow-2;
+  }
+}
+
+.ru-select-dropdown {
+  position: absolute;
+  top: $height;
+  left: 0;
+  width: 100%;
+}
+
+.ru-select-option__item {
+  &-active {
+    background: lightblue;
+  }
+}
+
+
+.ru-select__input {
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
