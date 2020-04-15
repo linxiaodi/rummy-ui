@@ -43,3 +43,24 @@ export const isNeil = (value: any) => {
   return false
 }
 
+export function debounce<T extends (this: unknown, ...args: unknown[]) => any> (fn: T, wait:number = 0, immediate:boolean = true): T {
+  let timer: number;
+  let result: ReturnType<T>;
+  const executor = function (this: unknown, ...args: unknown[]) {
+    if (immediate) {
+      const canCallNow: boolean = !timer
+      timer = setTimeout(() => {
+        result = fn.call(this, ...args)
+        clearTimeout(timer)
+      }, wait)
+      if (canCallNow) result = fn.call(this, ...args)
+    } else {
+      timer = setTimeout(() => {
+        result = fn.call(this, ...args)
+        clearTimeout(timer)
+      }, wait)
+    }
+  };
+
+  return executor as T
+}

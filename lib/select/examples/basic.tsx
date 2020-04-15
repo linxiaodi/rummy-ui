@@ -14,12 +14,11 @@ const App = () => {
   ]
   return (
     <div style={{paddingBottom: '100px'}}>
-      <Select className="w-330">
+      <Select disabled defaultValue={'huoguo'} className="w-330 mb-16">
         {options.map((item) => {
           return <Select.Option key={item.value} value={item.value} label={item.label}/>
         })}
       </Select>
-      <div style={{ height: '100px' }}/>
       <Select className="w-330">
         {options.map((item) => {
           return <Select.Option key={item.value} value={item.value} label={item.label}/>

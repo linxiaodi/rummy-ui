@@ -4,39 +4,10 @@ $height: 32px;
 
 }
 
-.ru-select {
-  cursor: pointer;
-  position: relative;
-  &__input {
-    display: block;
-    height: 100%;
-    width: 100%;
-  }
-  &__inner {
-    height: $height;
-    line-height: $height;
-    border: 1px solid $border-grey-color;
-    border-radius: 2px;
-  }
-  &__inner-active {
-    border-color: $primary;
-    box-shadow: $shadow-2;
-  }
-}
+.ru-select-empty {
+  font-size: 14px;
 
-.ru-select-dropdown {
-  position: absolute;
-  top: $height;
-  left: 0;
-  width: 100%;
 }
-
-.ru-select-option__item {
-  &-active {
-    background: lightblue;
-  }
-}
-
 
 .ru-select__input {
   border:none;
@@ -44,5 +15,78 @@ $height: 32px;
   background-color:transparent;
   box-shadow: none;
   outline: none;
+  font-size: inherit;
+}
+
+
+.ru-select {
+  position: relative;
+  font-size: 14px;
+  &__input {
+    display: block;
+    width: 100%;
+    height: $height;
+    line-height: $height;
+    border: 1px solid $border-grey-color;
+    border-radius: 2px;
+    padding: 6px 25px 6px 16px;
+    transition: all .4s;
+    cursor: inherit;
+    &:hover {
+      border-color: $primary;
+      box-shadow: $shadow-2;
+    }
+    &-active {
+      border-color: $primary;
+      box-shadow: $shadow-2;
+    }
+  }
+  &__inner {
+    cursor: pointer;
+    // disable
+    &-disable {
+      background-color: $disable;
+      cursor: not-allowed;
+      .ru-select__input:hover {
+        border-color: $border-grey-color;
+        box-shadow: none;
+      }
+      .ru-select-arrow {
+        color: #c6c7c9;
+      }
+    }
+  }
+  //&__inner-active {
+  //  border-color: $primary;
+  //  box-shadow: $shadow-2;
+  //}
+  .ru-select-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 12px;
+  }
+}
+
+.ru-select-dropdown {
+  position: absolute;
+  top: $height + 4px;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 8px 0 rgba(200,201,204,.5);
+}
+
+.ru-select-option__item {
+  padding: 7px 16px;
+  line-height: 1.5;
   cursor: pointer;
+  &:hover {
+    background: #edf4ff;
+  }
+}
+
+.ru-select-option__item.ru-select-option__item-active {
+  background-color: #f7f8fa;
+  font-weight: 500;
 }

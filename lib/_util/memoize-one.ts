@@ -52,7 +52,7 @@ export default function memoizeOne<
   let lastArgs: unknown[] = []
   let lastThis: unknown
 
-  return function(this: unknown, ...newArgs: unknown[]) {
+  const memoized = function(this: unknown, ...newArgs: unknown[]) {
     if (lastThis === this && isEquial(newArgs, lastArgs)) {
       return lastResult
     }
@@ -60,7 +60,8 @@ export default function memoizeOne<
     lastResult = resultFn.call(this, ...newArgs)
     lastThis = this
     lastArgs = newArgs
-    return lastResult
+    return lastResult;
   }
+  return memoized as T;
 }
 

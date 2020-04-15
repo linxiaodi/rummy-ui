@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react';
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 
 interface setHandler<T> {
   (cb: () => T): any
@@ -31,6 +31,15 @@ export const useWillUnmount = (onUnMount: Mount) => {
     return () => {
       handler.current()
     }
+  }, [])
+  return setHandler
+}
+
+// before Mount render
+export const useWillMount = (onWillMount: Mount) => {
+  const [handler, setHandler] = createHandlerSetter<Mount>(onWillMount)
+  useLayoutEffect(() => {
+    handler.current()
   }, [])
   return setHandler
 }

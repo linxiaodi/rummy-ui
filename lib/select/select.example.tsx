@@ -9,15 +9,18 @@ const App = () => {
       <p>简短的消息提示框，支持持续时间和样式。</p>
 
       <Demo path="select/examples/basic"/>
+      <Demo path="select/examples/search"/>
 
       <Table title="Select Attributes" source={[
         ['value', '指定某个条目', 'string', '非必填', '-'],
         ['defaultValue', '默认值', 'string', '非必填', '-'],
         ['placeholder', '占位符', 'string', '非必填', '-'],
+        ['showSearch', '是否展示搜索', 'boolean', '非必填', '-'],
+        ['filterOption', '启用搜索时自定义过滤条件', 'function', '非必填', '(input, value, label) => input === label']
       ]} type="attribute"/>
 
       <Table title="Select Event" source={[
-        ['onChange', '当条目改变时的回调', '(v:Value) => any'],
+        ['onChange', '当条目改变时的回调', '(v:value, label) => any'],
       ]} type="attribute"/>
 
       <Table title="Select Option Attributes" source={[

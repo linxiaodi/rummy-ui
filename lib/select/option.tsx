@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { SelectContext, SelectContextValue } from './select';
-import { useDidMount } from '../_util/hooks';
+import { useWillMount } from '../_util/hooks';
 import cs from 'classnames'
 
 export interface SelectOptionProps {
@@ -12,7 +12,7 @@ const SelectOption: React.FunctionComponent<SelectOptionProps> = (props) => {
   let { label, value } = props;
   let context = React.useContext<SelectContextValue>(SelectContext)
 
-  useDidMount(() => {
+  useWillMount(() => {
     if (value === context.value) {
       context.setLabel(label || '')
     }

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useCallback, useRef, useState } from 'react';
-import { Transition } from 'rummy-ui';
+import { Icon, Transition } from 'rummy-ui';
 import SelectOption from './option';
 import { CompoundReactFunction } from '../_util/type';
 import cs from 'classnames';
@@ -11,9 +11,13 @@ import memoize from '../_util/memoize-one'
 export interface SelectProps {
   value?: string | number,
   defaultValue?: string | number,
-  children?: React.ReactNode,
+  children?: React.ReactElement[],
   className?: string,
-  onChange?: Change
+  onChange?: Change,
+  disabled?: boolean,
+  placeholder?: string,
+  filterOption?: (input: string | number, value: string | number, label: string) => boolean,
+  showSearch?: boolean
 }
 
 export type SelectCompound = CompoundReactFunction<SelectProps, {
@@ -58,10 +62,12 @@ export const SelectContext = React.createContext<SelectContextValue>({} as Selec
 // })()
 
 const Select: SelectCompound = (props) => {
-  const [value, setValue] = useState(props.defaultValue || '')
+  const [value, setValue] = useState(props.value || props.defaultValue || '')
   const [label, setLabel] = useState('')
   const [visible, setVisible] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  let { showSearch, placeholder } = props;
 
   // const onClickOutside = useCallback(() => {
   //   setVisible(false);
@@ -73,11 +79,11 @@ const Select: SelectCompound = (props) => {
   //   removeEvent.current.remove()
   // })
 
-  const onClick:React.MouseEventHandler = (e) => {
-    e.stopPropagation();
-    // removeEvent.current.resetAllSelector()
-    setVisible(!visible)
-  }
+  // const onClick:React.MouseEventHandler = (e) => {
+  //   e.stopPropagation();
+  //   // removeEvent.current.resetAllSelector()
+  //   setVisible(!visible)
+  // }
 
   const onClickDropdown:React.MouseEventHandler = (e) => {
     e.stopPropagation();
@@ -85,13 +91,18 @@ const Select: SelectCompound = (props) => {
   }
 
   const onFocus = () => {
-    inputRef.current!.focus()
-    setVisible(true)
+    if (visible) {
+      setVisible(false)
+    } else {
+      inputRef.current!.focus()
+      setVisible(true)
+    }
   }
 
   const onBlur = () => {
     setVisible(false)
   }
+
 
   const onChange:Change = memoize((value, label) => {
     setValue(value)
@@ -99,24 +110,51 @@ const Select: SelectCompound = (props) => {
     props.onChange && props.onChange(value, label)
   })
 
+  console.log(props.children)
+
+  const showChildren = () => {
+    if (props.children) {
+      let filter = props.children.filter((el: React.ReactElement) => {
+        if (showSearch) {
+          return props.filterOption!(label, el.props.value, el.props.label)
+        }
+        return true;
+      })
+      return filter.length > 0 ? filter : <Empty/>;
+    } else {
+      return <Empty />
+    }
+  }
+
+  const onInputChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setLabel(e.target.value)
+  }
+
   return (
     <SelectContext.Provider value={{ value, setLabel, onChange }}>
-      <div className={cs('ru-select',props.className)}>
-        <div onClick={onFocus} className={cs('ru-select__inner', { 'ru-select__inner-active': visible })}>
+      <div className={cs('ru-select', props.className)}>
+        <div className={cs('ru-select__inner', { 'ru-select__inner-disable': props.disabled })}>
           <input
-            className="ru-select__input"
+            className={cs('ru-select__input', {'ru-select__input-active': visible })}
             type="text"
-            readOnly
-            value={label || value}
+            onMouseDown={onFocus}
+            disabled={props.disabled}
+            readOnly={!props.showSearch}
+            value={showSearch ? label : (label || value)}
+            placeholder={placeholder}
             ref={inputRef}
             autoComplete="off"
             onBlur={onBlur}
+            onChange={onInputChange}
           />
+          <Icon name={visible ? 'caret-bottom' : 'caret-top'} className="ru-select-arrow"/>
         </div>
-        { props.children &&
+        {
           <Transition in={visible} classNames="ru-zoom-in-top">
             <div onClick={onClickDropdown} className="ru-select-dropdown">
-              { props.children }
+              {
+                showChildren()
+              }
             </div>
           </Transition>
         }
@@ -124,6 +162,22 @@ const Select: SelectCompound = (props) => {
     </SelectContext.Provider>
   );
 };
+
+const Empty = () => {
+  return (
+    <div className="ru-select-empty">
+      暂无数据
+    </div>
+  );
+};
+
+Select.defaultProps = {
+  value: '',
+  disabled: false,
+  placeholder: '请选择',
+  filterOption: (input, value, label) => label.indexOf(input.toString()) >= 0,
+  showSearch: false
+}
 
 Select.Option = SelectOption;
 
