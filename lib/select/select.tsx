@@ -16,8 +16,6 @@ export interface SelectProps {
   onChange?: Change,
   disabled?: boolean,
   placeholder?: string,
-  filterOption?: (input: string | number, value: string | number, label: string) => boolean,
-  showSearch?: boolean
 }
 
 export type SelectCompound = CompoundReactFunction<SelectProps, {
@@ -110,8 +108,6 @@ const Select: SelectCompound = (props) => {
     props.onChange && props.onChange(value, label)
   })
 
-  console.log(props.children)
-
   const showChildren = () => {
     if (props.children) {
       let filter = props.children.filter((el: React.ReactElement) => {
@@ -126,10 +122,6 @@ const Select: SelectCompound = (props) => {
     }
   }
 
-  const onInputChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setLabel(e.target.value)
-  }
-
   return (
     <SelectContext.Provider value={{ value, setLabel, onChange }}>
       <div className={cs('ru-select', props.className)}>
@@ -139,13 +131,11 @@ const Select: SelectCompound = (props) => {
             type="text"
             onMouseDown={onFocus}
             disabled={props.disabled}
-            readOnly={!props.showSearch}
             value={showSearch ? label : (label || value)}
             placeholder={placeholder}
             ref={inputRef}
             autoComplete="off"
             onBlur={onBlur}
-            onChange={onInputChange}
           />
           <Icon name={visible ? 'caret-bottom' : 'caret-top'} className="ru-select-arrow"/>
         </div>
@@ -175,8 +165,6 @@ Select.defaultProps = {
   value: '',
   disabled: false,
   placeholder: '请选择',
-  filterOption: (input, value, label) => label.indexOf(input.toString()) >= 0,
-  showSearch: false
 }
 
 Select.Option = SelectOption;
