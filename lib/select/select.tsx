@@ -65,7 +65,7 @@ const Select: SelectCompound = (props) => {
   const [visible, setVisible] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  let { showSearch, placeholder } = props;
+  let { placeholder } = props;
 
   // const onClickOutside = useCallback(() => {
   //   setVisible(false);
@@ -110,13 +110,7 @@ const Select: SelectCompound = (props) => {
 
   const showChildren = () => {
     if (props.children) {
-      let filter = props.children.filter((el: React.ReactElement) => {
-        if (showSearch) {
-          return props.filterOption!(label, el.props.value, el.props.label)
-        }
-        return true;
-      })
-      return filter.length > 0 ? filter : <Empty/>;
+      return props.children
     } else {
       return <Empty />
     }
@@ -131,7 +125,7 @@ const Select: SelectCompound = (props) => {
             type="text"
             onMouseDown={onFocus}
             disabled={props.disabled}
-            value={showSearch ? label : (label || value)}
+            value={label || value}
             placeholder={placeholder}
             ref={inputRef}
             autoComplete="off"

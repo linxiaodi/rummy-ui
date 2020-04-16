@@ -18,13 +18,13 @@ const App = () => {
   ]
   return (
     <div>
-      <Select className="mb-100" showSearch={true}>
-        {
-          options.map((item) => {
-            return <Select.Option label={item.label} key={item.value} value={item.value}/>
-          })
-        }
-      </Select>
+      {/*<Select className="mb-100" showSearch={true}>*/}
+        {/*{*/}
+          {/*options.map((item) => {*/}
+            {/*return <Select.Option label={item.label} key={item.value} value={item.value}/>*/}
+          {/*})*/}
+        {/*}*/}
+      {/*</Select>*/}
     </div>
   );
 };
