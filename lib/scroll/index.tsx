@@ -2,6 +2,7 @@
  * @file refer https://github.com/Grsmto/simplebar
  * */
 import React, {
+  HTMLAttributes,
   MouseEventHandler,
   UIEventHandler,
   useCallback,
@@ -12,19 +13,23 @@ import React, {
 } from 'react';
 import './index.scss'
 import { scrollbarWidth } from '../_util/dom';
-import { debounce } from '../_util/helpers'
 import { useDidMount, useWillMount, useWillUnmount } from '../_util/hooks/index';
+import cs from 'classnames'
 
-interface ScrollProps {
+interface ScrollProps extends HTMLAttributes<HTMLDivElement>{
   children?: React.ReactNode,
-  height?: number
+  height?: string,
+  trackStyle?: React.CSSProperties,
+  barStyle?: React.CSSProperties,
 }
 
 let _nativeScrollWidth:number = 0
 
 const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
-  const { height } = props;
+  const { height, className, style, ...rest } = props;
   const isDrag = useRef(false)
+  const [_isDrag, _setIsDrag] = useState(isDrag.current);
+  const [barVisible, setBarVisible] = useState(true)
   const [nativeScrollWidth, setNativeScrollWidth] = useState(_nativeScrollWidth)
   const [_barHeight, _setBarHeight] = useState(0)
   const [barTop, _setBarTop] = useState(0)
@@ -35,6 +40,8 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
   // marker
   const oldBarTop = useRef(0)
 
+  const mutationObserver = useRef<MutationObserver>(null)
+
   const calcViewHeight = () => {
     const height = wrapper.current!.getBoundingClientRect().height;
     viewHeight.current = height
@@ -42,6 +49,7 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
 
   const setBarTop = (n: number) => {
     const max = viewHeight.current - barHeight.current;
+    console.log(max);
     if (n < 0) return _setBarTop(0);
     if (n > viewHeight.current - barHeight.current) return _setBarTop(max);
     _setBarTop(n)
@@ -68,7 +76,7 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
     }
   })
 
-  useDidMount(() => {
+  const init = () => {
     // const { height } = content.current!.getBoundingClientRect();
     // console.log(content.current!._barHeight);
     const contentHeight = content.current!.scrollHeight;
@@ -79,7 +87,30 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
         barHeight.current = v;
         return v;
       })
+      setBarVisible(contentHeight / viewHeight.current > 1)
+    } else {
+      setBarVisible(false)
     }
+  }
+
+  useDidMount(() => {
+    // const { height } = content.current!.getBoundingClientRect();
+    // console.log(content.current!._barHeight);
+    init();
+    const mutationObserver = new MutationObserver((mutationsList) => {
+      console.log(mutationsList);
+      init()
+      // for(let mutation of mutationsList) {
+      //   if (mutation.type === 'childList') {
+      //     init()
+      //   }
+      // }
+    })
+    mutationObserver.observe(content.current!, {
+      attributes: true,
+      childList: true,
+      subtree: true
+    })
     document.body.addEventListener('mousemove', onMouseMove)
     document.body.addEventListener('mouseup', onMouseUp)
     document.body.addEventListener('selectstart', onSelect)
@@ -100,11 +131,13 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
   // 判断是否处于拖动状态
   const onMouseDown:MouseEventHandler = (e) => {
     isDrag.current = true
+    _setIsDrag(true)
     yAxis.current = e.clientY
     oldBarTop.current = barTop;
   };
   const onMouseUp = () => {
     isDrag.current = false
+    _setIsDrag(false)
   };
 
   const onMouseMove = (e: MouseEvent) => {
@@ -115,6 +148,7 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
       const contentHeight = content.current!.scrollHeight;
       // native scroll top
       content.current!.scrollTop = (e.clientY - yAxis.current + oldBarTop.current) / viewHeight.current * contentHeight
+      console.log(contentHeight);
     }
   }
 
@@ -129,24 +163,36 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
 
   return (
     <div
-      style={{ height: typeof height === 'number' ? `${height}px` : height }}
-      className="ru-scroll-wrapper"
+      style={{
+        height: typeof height === 'number' ? `${height}px` : height,
+        ...style
+      }}
+      className={cs('ru-scroll-wrapper', className)}
       ref={wrapper}
+      {...rest}
     >
       <div
         ref={content}
-        style={{ right: `-${nativeScrollWidth}px` }}
+        style={{
+          right: barVisible ? `-${nativeScrollWidth}px` : '0px'
+        }}
         className="ru-scroll"
         onScroll={onScroll}
       >
         {props.children}
       </div>
-      <div className="ru-scroll-track">
-        <div style={{ height: _barHeight, top: `${barTop}px` }}
-             onMouseDown={onMouseDown}
-             className="ru-scroll-bar"
-        />
-      </div>
+      {
+        barVisible &&
+        <div
+          className="ru-scroll-track"
+          style={{ ...props.trackStyle }}
+        >
+          <div style={{ ...props.barStyle, height: _barHeight, top: `${barTop}px` }}
+               onMouseDown={onMouseDown}
+               className={cs('ru-scroll-bar', { 'ru-scroll-bar-active': _isDrag })}
+          />
+        </div>
+      }
     </div>
   );
 };
