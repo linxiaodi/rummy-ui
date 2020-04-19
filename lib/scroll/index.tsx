@@ -87,9 +87,7 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
         barHeight.current = v;
         return v;
       })
-      console.log(contentHeight, viewHeight.current);
       setBarVisible(contentHeight / viewHeight.current > 1)
-      console.log(contentHeight / viewHeight.current > 1);
     } else {
       setBarVisible(false)
     }

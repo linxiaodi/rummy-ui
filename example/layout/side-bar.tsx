@@ -7,6 +7,10 @@ import cs from 'classnames';
 const SideBar: React.FunctionComponent<RouteComponentProps> = (props) => {
   return (
     <div>
+      <Link
+        className={cs('sider-link', { 'sider-link_active': props.location.pathname === '/intro'})}
+        to='/intro'
+      >介绍</Link>
       {
         routes.map((route) => {
           const cls = cs('sider-link', { 'sider-link_active': props.location.pathname === route.path })

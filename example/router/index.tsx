@@ -1,7 +1,8 @@
 import React from 'react';
 import { withRouter, Route, Switch } from 'react-router-dom'
 import routes from './routes'
-import NotFound from '../layout/not-found'
+// import NotFound from '../layout/not-found'
+import Install from '../layout/install'
 
 const Router = () => {
     return (
@@ -12,7 +13,7 @@ const Router = () => {
                         return <Route key={route.path} path={route.path} component={route.component}/>
                     })
                 }
-                <Route path="*" component={NotFound}/>
+                <Route path="/intro" component={Install}/>
             </Switch>
         </div>
     );

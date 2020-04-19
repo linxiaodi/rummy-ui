@@ -5,6 +5,7 @@ import './index.scss';
 import { pureObject } from '../_util/type'
 import { deepClone } from '../_util/helpers'
 import Validator from '../_util/validator/index'
+import Transition from '../transition/index'
 
 interface FormProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactElement[] | React.ReactElement,
@@ -129,7 +130,11 @@ const FormItem: React.FunctionComponent<FormItemProps> = (props) => {
         value,
         onChange: (v: any) => setValue(v)
       })}
-      {error && <div className="ru-form-item__error">{error}</div>}
+      {
+        <Transition in={!!error} classNames="ru-zoom-in-top">
+          <div className="ru-form-item__error">{error}</div>
+        </Transition>
+      }
     </div>
   </div>
 }
