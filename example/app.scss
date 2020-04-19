@@ -77,8 +77,6 @@ html, body {
 .ru-example-header {
   height: 64px;
   padding: 0 32px;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #f2f2f2;
   .header-side {
     height: inherit;
@@ -90,6 +88,15 @@ html, body {
     align-items: center;
     justify-content: center;
   }
+}
+
+.ru-example-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .ru-example-container {

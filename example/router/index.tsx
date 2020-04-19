@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Route, Switch } from 'react-router-dom'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import routes from './routes'
 // import NotFound from '../layout/not-found'
 import Install from '../layout/install'
@@ -14,6 +14,7 @@ const Router = () => {
                     })
                 }
                 <Route path="/intro" component={Install}/>
+                <Redirect path="*" to='/intro'/>
             </Switch>
         </div>
     );
