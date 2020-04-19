@@ -7,6 +7,7 @@ import FormExample from '../../lib/form/form.example'
 import MessageExample from '../../lib/message/message.example'
 import TransitionExample from '../../lib/transition/Transition.example'
 import SelectExample from '../../lib/select/select.example'
+import ScrollExample from '../../lib/scroll/scroll.example';
 
 const routes = [
   {
@@ -45,14 +46,19 @@ const routes = [
     sidebar: 'Message 信息提示'
   },
   {
+    path: '/select',
+    component: SelectExample,
+    sidebar: 'Select 选择器'
+  },
+  {
     path: '/transition',
     component: TransitionExample,
     sidebar: 'Transition 动画使用'
   },
   {
-    path: '/select',
-    component: SelectExample,
-    sidebar: 'Select 选择器'
-  }
+    path: '/scroll',
+    component: ScrollExample,
+    sidebar: 'Scroll 虚拟滚动条'
+  },
 ];
 export default routes;

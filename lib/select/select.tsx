@@ -129,6 +129,7 @@ const Select: SelectCompound = (props) => {
             placeholder={placeholder}
             ref={inputRef}
             autoComplete="off"
+            readOnly
             onBlur={onBlur}
           />
           <Icon name={visible ? 'caret-bottom' : 'caret-top'} className="ru-select-arrow"/>

@@ -1,0 +1,33 @@
+.ru-scroll-wrapper {
+  position: relative;
+  border: 3px solid #ddd;
+  overflow: hidden;
+  .ru-scroll {
+    overflow-y: auto;
+    position: absolute;
+    //height: 100%;
+    //width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid #000;
+  }
+  .ru-scroll-track {
+    position: absolute;
+    width: 10px;
+    right: 0;
+    height: 100%;
+    top: 0;
+    background: transparent;
+  }
+  .ru-scroll-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    width: 6px;
+    height: 40px;
+    background: lightgreen;
+  }
+}

@@ -20,4 +20,5 @@ export { default as Form } from './form/index';
 export { default as Message } from './message/message'
 export { default as message } from './message/index'
 export { default as Transition } from './transition/index'
-export { default as Select } from './select/';
+export { default as Select } from './select/index';
+export { default as Scroll } from './scroll/index'
