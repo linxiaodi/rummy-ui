@@ -3,7 +3,7 @@ import './app.scss';
 import SideBar from './layout/side-bar';
 import Router from './router';
 import { Link, HashRouter } from 'react-router-dom';
-import { Layout } from 'rummy-ui';
+import { Layout, Scroll } from 'rummy-ui';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -11,6 +11,7 @@ const { Header, Footer, Sider, Content } = Layout;
 import { hot } from 'react-hot-loader/root';
 
 let App = () => (<HashRouter>
+  <Scroll height="100vh">
 		<Layout className="box">
       <Header className="ru-example-header">
         <Link className="logo" to="/">
@@ -40,6 +41,7 @@ let App = () => (<HashRouter>
         copyright@2019 linweikun
       </Footer>
     </Layout>
+  </Scroll>
 </HashRouter>);
 
 export default hot(App);

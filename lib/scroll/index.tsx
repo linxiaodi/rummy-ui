@@ -70,10 +70,10 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
   const content = useRef<HTMLDivElement>(null)
 
   useWillMount(() => {
-    if (!_nativeScrollWidth) {
+    // if (!_nativeScrollWidth) {
       _nativeScrollWidth = scrollbarWidth();
       setNativeScrollWidth(_nativeScrollWidth);
-    }
+    // }
   })
 
   const init = () => {
@@ -87,7 +87,9 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
         barHeight.current = v;
         return v;
       })
+      console.log(contentHeight, viewHeight.current);
       setBarVisible(contentHeight / viewHeight.current > 1)
+      console.log(contentHeight / viewHeight.current > 1);
     } else {
       setBarVisible(false)
     }
@@ -98,8 +100,8 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
     // console.log(content.current!._barHeight);
     init();
     const mutationObserver = new MutationObserver((mutationsList) => {
-      console.log(mutationsList);
       init()
+      // console.log(mutationsList);
       // for(let mutation of mutationsList) {
       //   if (mutation.type === 'childList') {
       //     init()
@@ -107,9 +109,9 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
       // }
     })
     mutationObserver.observe(content.current!, {
-      attributes: true,
       childList: true,
-      subtree: true
+      subtree: true,
+      attributes: true
     })
     document.body.addEventListener('mousemove', onMouseMove)
     document.body.addEventListener('mouseup', onMouseUp)
@@ -148,7 +150,6 @@ const Scroll: React.FunctionComponent<ScrollProps> = (props) => {
       const contentHeight = content.current!.scrollHeight;
       // native scroll top
       content.current!.scrollTop = (e.clientY - yAxis.current + oldBarTop.current) / viewHeight.current * contentHeight
-      console.log(contentHeight);
     }
   }
 

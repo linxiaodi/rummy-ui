@@ -1,6 +1,5 @@
 .ru-scroll-wrapper {
   position: relative;
-  border: 3px solid #ddd;
   overflow: hidden;
   .ru-scroll {
     overflow-y: auto;
@@ -10,15 +9,15 @@
     top: 0;
     bottom: 0;
     left: 0;
-    border: 1px solid #000;
   }
   .ru-scroll-track {
     position: absolute;
-    width: 10px;
+    width: 14px;
     right: 0;
     height: 100%;
     top: 0;
     background: transparent;
+    z-index: 100;
   }
   .ru-scroll-bar {
     position: absolute;
@@ -26,8 +25,15 @@
     right: 0;
     margin: auto;
     top: 0;
-    width: 6px;
+    width: 8px;
     height: 40px;
-    background: lightgreen;
+    background: rgba(0, 0, 0, .2);
+    border-radius: 4px;
+    &:hover {
+      background: rgba(0, 0, 0, .5);
+    }
+    &-active {
+      background: rgba(0, 0, 0, .5);
+    }
   }
 }
