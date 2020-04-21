@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="8" failures="0" time="4.956">
-  <testsuite name="input" errors="0" failures="0" skipped="0" timestamp="2020-01-18T16:09:48" time="3.447" tests="3">
-    <testcase classname="input large size" name="input large size" time="0.004">
+<testsuites name="jest tests" tests="7" failures="0" time="4.147">
+  <testsuite name="input" errors="0" failures="0" skipped="0" timestamp="2020-04-21T15:28:33" time="1.715" tests="3">
+    <testcase classname="input large size" name="input large size" time="0.007">
     </testcase>
-    <testcase classname="input disabled" name="input disabled" time="0.006">
+    <testcase classname="input disabled" name="input disabled" time="0.004">
     </testcase>
-    <testcase classname="input trigger blue" name="input trigger blue" time="0.002">
+    <testcase classname="input trigger blue" name="input trigger blue" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="Button" errors="0" failures="0" skipped="0" timestamp="2020-01-18T16:09:52" time="0.614" tests="2">
-    <testcase classname="Button create" name="Button create" time="0.011">
+  <testsuite name="Button" errors="0" failures="0" skipped="0" timestamp="2020-04-21T15:28:35" time="0.209" tests="2">
+    <testcase classname="Button create" name="Button create" time="0.002">
     </testcase>
     <testcase classname="Button trigger click" name="Button trigger click" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="icon component" errors="0" failures="0" skipped="0" timestamp="2020-01-18T16:09:53" time="0.171" tests="2">
+  <testsuite name="icon component" errors="0" failures="0" skipped="0" timestamp="2020-04-21T15:28:35" time="0.184" tests="2">
     <testcase classname="icon component test props name" name="icon component test props name" time="0.005">
     </testcase>
-    <testcase classname="icon component trigger click event" name="icon component trigger click event" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="dialog" errors="0" failures="0" skipped="0" timestamp="2020-01-18T16:09:53" time="0.543" tests="1">
-    <testcase classname="dialog render correct" name="dialog render correct" time="0.043">
+    <testcase classname="icon component trigger click event" name="icon component trigger click event" time="0.001">
     </testcase>
   </testsuite>
 </testsuites>

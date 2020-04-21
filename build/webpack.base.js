@@ -1,7 +1,7 @@
-const { resolve, isPro, mode, PORT } = require('./utils')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const webpack = require('webpack')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { resolve, isPro, mode, PORT } = require('./utils');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -27,19 +27,16 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          isPro ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader'
-        ]
+        use: [isPro ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader']
       },
       {
         test: /\.tsx?$/,
-        use: ['awesome-typescript-loader'],
+        use: ['thread-loader', 'babel-loader'],
         exclude: [/node_modules/]
       },
       {
         test: /\.jsx?$/,
-        loader: require.resolve('babel-loader')
+        use: ['thread-loader', 'babel-loader']
       },
       {
         test: /\.scss$/,
@@ -50,10 +47,7 @@ module.exports = {
           {
             loader: 'style-resources-loader',
             options: {
-              patterns: [
-                resolve('lib/style/index.scss'),
-                resolve('lib/style/mixin-layout.scss')
-              ]
+              patterns: [resolve('lib/style/index.scss'), resolve('lib/style/mixin-layout.scss')]
             }
           }
         ]
@@ -66,9 +60,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(
-        process.env.NODE_ENV || 'development'
-      )
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new CleanWebpackPlugin()
   ]
@@ -88,4 +80,4 @@ module.exports = {
   //     }
   //   }
   // }
-}
+};
