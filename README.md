@@ -1,4 +1,4 @@
-# rummy-ui
+# rummy-ui[![npm version](https://badge.fury.io/js/rummy-ui.svg)](https://badge.fury.io/js/rummy-ui)
 
 A toolkit UI build by React,Typescript.
 
