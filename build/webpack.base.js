@@ -1,17 +1,17 @@
-const { resolve, isPro, mode, PORT } = require('./utils');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
-const CleanWebpackPackPlugin = require('clean-webpack-plugin');
+const { resolve, isPro, mode, PORT } = require('./utils')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: resolve('lib/index.tsx'),
+    index: resolve('lib/index.tsx')
   },
   output: {
     path: resolve('dist'),
     filename: '[name].js',
     libraryTarget: 'umd',
-    publicPath: '/',
+    publicPath: '/'
   },
   mode,
   stats: 'errors-only',
@@ -20,8 +20,8 @@ module.exports = {
     alias: {
       '@': resolve('lib'),
       'react-dom': '@hot-loader/react-dom',
-      'rummy-ui': resolve('lib'),
-    },
+      'rummy-ui': resolve('lib')
+    }
   },
   module: {
     rules: [
@@ -29,17 +29,17 @@ module.exports = {
         test: /\.css$/,
         use: [
           isPro ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-        ],
+          'css-loader'
+        ]
       },
       {
         test: /\.tsx?$/,
         use: ['awesome-typescript-loader'],
-        exclude: [/node_modules/],
+        exclude: [/node_modules/]
       },
       {
         test: /\.jsx?$/,
-        loader: require.resolve('babel-loader'),
+        loader: require.resolve('babel-loader')
       },
       {
         test: /\.scss$/,
@@ -52,26 +52,26 @@ module.exports = {
             options: {
               patterns: [
                 resolve('lib/style/index.scss'),
-                resolve('lib/style/mixin-layout.scss'),
-              ],
-            },
-          },
-        ],
+                resolve('lib/style/mixin-layout.scss')
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.md$/,
-        use: ['raw-loader'],
-      },
-    ],
+        use: ['raw-loader']
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(
-        process.env.NODE_ENV || 'development',
-      ),
+        process.env.NODE_ENV || 'development'
+      )
     }),
-    new CleanWebpackPackPlugin(),
-  ],
+    new CleanWebpackPlugin()
+  ]
   // optimization: {
   //   splitChunks: {
   //     cacheGroups: {
@@ -88,4 +88,4 @@ module.exports = {
   //     }
   //   }
   // }
-};
+}
