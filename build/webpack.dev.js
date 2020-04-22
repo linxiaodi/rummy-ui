@@ -32,6 +32,7 @@ module.exports = merge(config, {
     hot: true,
     historyApiFallback: true,
     quiet: true,
+    overlay: true, // 编译出现错误时，将错误直接显示在页面上
     stats: 'errors-only'
   }
 });
