@@ -1,0 +1,23 @@
+language: node_js
+
+sudo: false
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+node_js: stable
+
+install:
+  - npm install
+
+script:
+  - npm run ci
+
+before_deploy: npm run build
+deploy:
+  provider: npm
+  on:
+    tags: true
+  tag: latest
