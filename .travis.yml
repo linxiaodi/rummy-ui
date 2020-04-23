@@ -19,7 +19,7 @@ before_deploy: npm run build && npm config set registry http://www.npmjs.org
 deploy:
   provider: npm
   email: 343206347@qq.com
-  api_key: $NPM_TOKEN
+  api_key: $NPM_API_TOKEN
   on:
     tags: true
   tag: latest
