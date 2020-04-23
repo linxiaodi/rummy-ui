@@ -1,6 +1,6 @@
 {
   "name": "rummy-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
