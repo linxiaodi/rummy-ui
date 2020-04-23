@@ -18,6 +18,8 @@ script:
 before_deploy: npm run build
 deploy:
   provider: npm
+  email: 343206347@qq.com
+  api_key: $NPM_TOKEN
   on:
     tags: true
   tag: latest
