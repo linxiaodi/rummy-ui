@@ -15,11 +15,11 @@ install:
 script:
   - npm run ci
 
-before_deploy: npm run build
+before_deploy: npm run build && npm config set registry http://www.npmjs.org
 deploy:
   provider: npm
   email: 343206347@qq.com
-  api_token: $NPM_TOKEN
+  api_key: $NPM_TOKEN
   on:
     tags: true
   tag: latest
