@@ -4,7 +4,7 @@
   "description": "A toolkit UI build by React,Typescript.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.pro.js --color --progress ---display='detailed'",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.pro.js --color --progress ---display='normal'",
     "type-check": "tsc --watch",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js --color --progress",
     "build:docs": "cross-env NODE_ENV=production webpack --config ./build/webpack.docs.js --color --progress",
@@ -15,8 +15,8 @@
     "depoly:docs": "sh ./docs.sh"
   },
   "files": [
-    "./dist",
-    "./dist/**/*.css"
+    "dist",
+    "lib"
   ],
   "types": "./dist/lib/index.d.ts",
   "repository": {

@@ -13,6 +13,7 @@ Personal experimental UI library. ⚠️**Dont use in production**
 - [x] Scroll
 - [ ] Tree
 - [ ] Checkbox
+- [ ] Collap
 - [ ] Radio
 - [ ] Calendar/TimePicker
 - [ ] Tooltip

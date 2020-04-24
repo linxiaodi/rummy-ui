@@ -31,12 +31,29 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: ['thread-loader', 'babel-loader'],
+        use: [
+          'thread-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ],
         exclude: [/node_modules/]
       },
       {
         test: /\.jsx?$/,
-        use: ['thread-loader', 'babel-loader']
+        use: [
+          'thread-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ],
+        exclude: [/node_modules/]
       },
       {
         test: /\.scss$/,
