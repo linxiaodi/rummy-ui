@@ -9,7 +9,7 @@ const InputExample = () => {
 		<div className="rummy-demo ru-demo-input">
 			<Demo path="input/examples/basic" title="基础使用" desc="绑定value和onChange可变为受控组件" />
 			<Demo path="input/examples/size" title="格式尺寸的Input" />
-			<Demo path="input/examples/disable" title="禁用状态" />
+			<Demo path="input/examples/disabled" title="禁用状态" />
 			<h3>API</h3>
 			<Table
 				title="Input Attributes"
