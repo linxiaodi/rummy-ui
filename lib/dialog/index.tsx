@@ -18,7 +18,7 @@ interface DialogProps {
 	onCancel?: () => any;
 	buttons?: React.ReactNode | Array<React.ReactElement>;
 	closeOnClickMask?: boolean;
-	afterClose?: () => any;
+	onExited?: () => any;
 }
 
 interface Species {
@@ -37,9 +37,7 @@ interface ConfirmProps extends Species {
 	onOk?: () => void;
 }
 
-interface DialogType extends React.FunctionComponent<DialogProps> {
-	alert?: (props: AlertProps) => any;
-}
+interface DialogType extends React.FunctionComponent<DialogProps> {}
 
 const Dialog: DialogType = props => {
 	const { title, visible, buttons, closeOnClickMask } = props;
@@ -82,7 +80,7 @@ const Dialog: DialogType = props => {
 	const result = (
 		<div>
 			<div onClick={onMaskClick} className={wrapperClass} />
-			<Transition onExited={props.afterClose} in={visible} classNames="ru-zoom">
+			<Transition onExited={props.onExited} in={visible} classNames="ru-zoom">
 				<div className={dialogClass}>
 					<div className={scope('header')}>
 						<div className={scope('header__title')}>{title}</div>
@@ -106,16 +104,11 @@ const Dialog: DialogType = props => {
  * */
 
 export const modal = (props: ModalProps) => {
-	const { title, afterClose, buttons, content } = props;
+	const { title, afterClose, buttons, content, ...rest } = props;
 	const close = () => {
 		ReactDOM.render(
 			React.cloneElement(component, {
-				visible: false,
-				afterClose: () => {
-					// 动画结束之后删除实例
-					ReactDOM.unmountComponentAtNode(wrapper);
-					wrapper.remove();
-				}
+				visible: false
 			}),
 			wrapper
 		);
@@ -125,9 +118,18 @@ export const modal = (props: ModalProps) => {
 		afterClose && afterClose();
 		close();
 	};
-
 	const component = (
-		<Dialog visible={true} buttons={buttons} onCancel={onCancel} title={title}>
+		<Dialog
+			visible={true}
+			buttons={buttons}
+			{...rest}
+			onCancel={onCancel}
+			onExited={() => {
+				// 动画结束之后删除实例
+				ReactDOM.unmountComponentAtNode(wrapper);
+				wrapper.remove();
+			}}
+			title={title}>
 			{content}
 		</Dialog>
 	);
@@ -167,6 +169,7 @@ export const confirm = (props: ConfirmProps) => {
 		</Button>
 	];
 	const close = modal({ ...props, buttons: btns });
+	return close;
 };
 
 // Dialog.propTypes = {
@@ -175,7 +178,5 @@ export const confirm = (props: ConfirmProps) => {
 Dialog.defaultProps = {
 	closeOnClickMask: true
 };
-
-Dialog.alert = alert;
 
 export default Dialog;

@@ -1,47 +1,16 @@
 import React from 'react';
-import { Layout } from 'rummy-ui';
-import './layout.example.scss'
-
-const { Header, Content, Footer, Sider } = Layout;
+import './layout.example.scss';
+import Demo from '../../example/demo';
 
 const LayoutExample = () => {
-  return (
-    <div className="ru-example-layout">
-      <h2>Layout 组件</h2>
-      <Layout>
-        <Header>header</Header>
-        <Content>content</Content>
-        <Footer>footer</Footer>
-      </Layout>
+	return (
+		<div className="ru-example-layout">
+			<h2>Layout 组件</h2>
+			<p>协助进行页面级整体布局。</p>
 
-      <Layout>
-        <Header>Header</Header>
-        <Layout>
-          <Sider>Sider</Sider>
-          <Content>Content</Content>
-        </Layout>
-        <Footer>Footer</Footer>
-      </Layout>
-
-      <Layout>
-        <Header>Header</Header>
-        <Layout>
-          <Content>Content</Content>
-          <Sider>Sider</Sider>
-        </Layout>
-        <Footer>Footer</Footer>
-      </Layout>
-
-      <Layout>
-        <Sider>Sider</Sider>
-        <Layout>
-          <Header>Header</Header>
-          <Content>Content</Content>
-          <Footer>Footer</Footer>
-        </Layout>
-      </Layout>
-    </div>
-  );
+			<Demo title="基本布局" desc="如果layout里面有sider就会横向布局" path="layout/examples/basic" />
+		</div>
+	);
 };
 
 export default LayoutExample;

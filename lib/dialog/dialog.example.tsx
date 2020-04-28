@@ -1,46 +1,56 @@
-import React, {useState} from 'react';
-import { Dialog, modal, alert, confirm } from 'rummy-ui';
-import { Button } from 'rummy-ui';
-
+import React, { useState } from 'react';
+import Demo from '../../example/demo';
+import Table from '../../example/table';
 
 const DialogExample = () => {
-  const [visible, setVisible]  = useState(false)
-  return (
-    <div className="rummy-demo">
-      <h2>Dialog组件</h2>
-      <h3>基本用法</h3>
-      <Button type="primary" onClick={() => setVisible(true)}>基本用法</Button>
-      <Dialog
-        title="对话框"
-        visible={visible}
-        buttons={[<Button onClick={() => setVisible(false)}>取消</Button>, <Button onClick={() => console.log('确定')} type="primary">确定</Button>]}
-      >这是基本用法</Dialog>
-      <h3>modal 对话框</h3>
-      <Button onClick={() => {
-        modal({
-          content: 'modal对话框',
-          title: 'Modal',
-          afterClose: () => { console.log('modal对话框被关闭了!') }
-        })
-      }}>打开modal</Button>
-      <h3>alert 信息提示</h3>
-      <Button
-        type="primary"
-        onClick={() => {
-          alert({ title: 'Alert', content: 'alert内容', afterClose: () => console.log('alert对话框被关了') })
-        }}
-      >打开alert提示</Button>
-      <h3>confirm 确认对话框</h3>
-      <Button type="primary" onClick={() => {
-        confirm({
-          title: 'Confirm',
-          content: 'confirm确定框',
-          onOk: () => console.log('confirm确定'),
-          afterClose: () => console.log('取消')
-        })
-      }}>打开confirm</Button>
-    </div>
-  );
+	const [visible, setVisible] = useState(false);
+	return (
+		<div className="rummy-demo">
+			<h2>Dialog组件</h2>
+			<p>在保留当前页面状态的情况下，告知用户并承载相关操作。</p>
+			<Demo path="dialog/examples/basic" title="基础用法" />
+			<Demo path="dialog/examples/model" title="model 对话框" />
+			<Demo path="dialog/examples/alert" title="alert 信息提示" />
+			<Demo path="dialog/examples/confirm" title="confirm 确认对话框" />
+			<Table
+				title="Dialog Attributes"
+				source={[
+					['visible', 'Dialog是否展示', 'boolean', '必填', 'false'],
+					['title', 'Dialog的header', 'string | ReactNode', '非必填', '-'],
+					['closeOnClickMask', '是否可以通过点击遮罩关闭dialog', 'boolean', '非必填', 'true'],
+					['buttons', '底部按钮', 'ReactNode | ReactNode[]', '非必填', '-'],
+					['onCancel', 'visible为false时', '() => any', '非必填', '-'],
+					['onExited', '当dialog消失动画结束', '() => any', '非必填', '-']
+				]}
+			/>
+			<Table
+				title="Model Attributes"
+				source={[
+					['title', 'Dialog的header', 'string | ReactNode', '必填', '-'],
+					['content', 'Dialog的内容', 'string | ReactNode', '必填', '-'],
+					['afterClose', '当Dialog消失', '() => any', '非必填', '-'],
+					['buttons', '底部按钮', 'ReactNode | ReactNode[]', '非必填', '-']
+				]}
+			/>
+			<Table
+				title="Alert Attributes"
+				source={[
+					['title', 'Dialog的header', 'string | ReactNode', '必填', '-'],
+					['content', 'Dialog的内容', 'string | ReactNode', '必填', '-'],
+					['afterClose', '当Dialog消失', '() => any', '非必填', '-']
+				]}
+			/>
+			<Table
+				title="Confirm Attributes"
+				source={[
+					['title', 'Dialog的header', 'string | ReactNode', '必填', '-'],
+					['content', 'Dialog的内容', 'string | ReactNode', '必填', '-'],
+					['afterClose', '当Dialog消失,点击取消按钮', '() => any', '非必填', '-'],
+					['onOk', '点击确定按钮', '() => any', '非必填', '-']
+				]}
+			/>
+		</div>
+	);
 };
 
 export default DialogExample;
