@@ -1,84 +1,60 @@
 .ru-fade-enter-active.ru-fade-enter {
-  opacity: 0;
+	opacity: 0;
 }
 .ru-fade-enter-active {
-  opacity: 1;
-  transition: opacity .6s;
+	opacity: 1;
+	transition: opacity 0.6s;
 }
 .ru-fade-exit {
-  opacity: 1;
+	opacity: 1;
 }
 .ru-fade-exit-active {
-  opacity: 0;
-  transition: opacity .6s;
+	opacity: 0;
+	transition: opacity 0.6s;
 }
 
 .ru-fade-exit-done {
-  opacity: 0;
+	opacity: 0;
 }
 
 .ru-zoom-enter,
 .ru-zoom-exit {
-  animation-fill-mode: both;
-  animation-play-state: paused;
+	animation-fill-mode: both;
+	animation-play-state: paused;
 }
 
-.ru-zoom-enter, .ru-zoom-enter-active {
-  animation: 160ms $timing-fn-ease-in 0s 1 normal both running ru-ani-zoomin,
-  100ms $timing-fn-ease-in 60ms 1 normal both running ru-ani-fadein;
+.ru-zoom-enter,
+.ru-zoom-enter-active {
+	animation: 300ms both zoomIn;
 }
 
-.ru-zoom-exit, .ru-zoom-exit-active {
-  animation: 160ms $timing-fn-ease-out 0s 1 normal both running ru-ani-zoomout,
-  100ms $timing-fn-ease-out 60ms 1 normal both running ru-ani-fadeout;
+.ru-zoom-exit,
+.ru-zoom-exit-active {
+	animation: 300ms both zoomOut;
 }
 
-@keyframes ru-ani-zoomin {
-  0% {
-    transform: scale(0);
-  }
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
 
-  100% {
-    transform: scale(1);
-  }
+	50% {
+		opacity: 1;
+	}
 }
 
-@keyframes ru-ani-zoomout {
-  0% {
-    transform: scale(1);
-  }
+@keyframes zoomOut {
+	from {
+		opacity: 1;
+	}
 
-  100% {
-    transform: scale(0);
-  }
-}
+	50% {
+		opacity: 0;
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
 
-@keyframes ru-ani-fadein {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes ru-ani-fadeout {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes ru-ani-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		opacity: 0;
+	}
 }
