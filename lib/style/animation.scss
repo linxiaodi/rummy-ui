@@ -1,3 +1,7 @@
+.ru-collapse-transition {
+	transition: 0.3s height ease, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
+}
+
 .ru-fade-enter-active.ru-fade-enter {
 	opacity: 0;
 }
