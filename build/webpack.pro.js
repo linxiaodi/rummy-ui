@@ -1,9 +1,8 @@
 const config = require('./webpack.base');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const proConfig = merge(config, {
   mode: 'production',

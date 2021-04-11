@@ -1,7 +1,10 @@
 const { resolve, isPro, mode, PORT } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+console.log(process.env.NODE_ENV)
 
 module.exports = {
   entry: {
@@ -20,7 +23,13 @@ module.exports = {
     alias: {
       '@': resolve('lib'),
       'react-dom': '@hot-loader/react-dom',
-      'rummy-ui': resolve('lib')
+      'rummy-ui': resolve('lib'),
+      'classnames': resolve('classnames'),
+      'DemoCode': resolve('example/DemoCode.jsx'),
+    },
+    fallback: {
+      util: false,
+      stream: false
     }
   },
   module: {
@@ -32,7 +41,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          'thread-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -45,7 +53,6 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: [
-          'thread-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -71,7 +78,13 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        use: ['raw-loader']
+        // use: [require('./md-loader/index')]
+        use: [
+          'babel-loader',
+          {
+            loader: path.resolve(__dirname, './md-loader/index.js'),
+          }
+        ]
       }
     ]
   },
@@ -81,20 +94,4 @@ module.exports = {
     }),
     new CleanWebpackPlugin()
   ]
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendor: {
-  //         chunks: "initial",
-  //         test: /vue|vue-router|vuex/,
-  //         name: "vendor", // 使用 vendor 入口作为公共部分
-  //         enforce: true,
-  //       },
-  //       manifest: {
-  //         chunks: 'all',
-  //         name: 'manifest'
-  //       }
-  //     }
-  //   }
-  // }
 };

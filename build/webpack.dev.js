@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const config = require('./webpack.base');
 const { resolve, PORT } = require('./utils');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,8 +8,9 @@ config.entry.index = ['react-hot-loader/patch', config.entry.index];
 
 module.exports = merge(config, {
 	stats: 'errors-only',
+	target: 'web', // 不加会导致wds失效
 	entry: {
-		index: resolve('./example/index')
+		index: resolve('./example/md-test/app')
 	},
 	output: {
 		path: resolve('dist'),

@@ -1,12 +1,16 @@
-/**
- * transform .md
- * */
-import React from 'react'
-import example from '../lib/icons/icon.example.md';
-import { transform } from '@babel/standalone';
+import React, { Component } from 'react';
 
-function Markdown() {
+class Markdown extends Component {
+	componentDidMount() {
+	}
 
+	render() {
+		return (
+			<div>
+
+			</div>
+		);
+	}
 }
 
-
+export default Markdown;
